@@ -1,4 +1,4 @@
-import { Component, inject, signal, ElementRef, ViewChild } from '@angular/core';
+import { Component, inject, signal, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -13,7 +13,7 @@ import html2canvas from 'html2canvas';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   readonly langService = inject(LanguageService);
   readonly sanitizer = inject(DomSanitizer);
   readonly companyInfo = COMPANY_INFO;
@@ -22,6 +22,20 @@ export class AppComponent {
 
   activeTab = signal<'home' | 'about' | 'services' | 'fleet' | 'tours' | 'contact' | 'profile'>('home');
   fleetCategoryFilter = signal<'all' | 'sedan' | 'van' | 'suv'>('all');
+
+  // Animated Hero Carousel State
+  heroImages = [
+    { url: '/hero.jpg', name: 'Mercedes-Maybach S-680 VIP' },
+    { url: '/cullinan.jpg', name: 'Rolls-Royce Cullinan VIP' },
+    { url: '/range_rover.jpg', name: 'Range Rover Autobiography LWB' }
+  ];
+  currentHeroIndex = signal(0);
+
+  ngOnInit(): void {
+    setInterval(() => {
+      this.currentHeroIndex.update(idx => (idx + 1) % this.heroImages.length);
+    }, 5500);
+  }
 
   // Search State & Dynamic Service Type
   searchQuery: SearchQuery = {

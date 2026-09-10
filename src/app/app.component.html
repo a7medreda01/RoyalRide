@@ -240,9 +240,22 @@
       <!-- 👑 FULL-WIDTH LUXURY HERO BANNER WITH OVERLAPPING TEXT 👑 -->
       <section class="relative w-full min-h-[85vh] lg:min-h-[88vh] flex items-center overflow-hidden bg-[#07080A]">
 
-        <!-- Full-Bleed Background Car Banner Image -->
-        <div class="absolute inset-0 w-full h-full z-0">
-          <img src="/hero.jpg" alt="Mercedes-Maybach S-Class VIP" class="w-full h-full object-cover object-center scale-105" />
+        <!-- Full-Bleed Animated Background Car Showcase with Ken Burns & Light Effects -->
+        <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
+          @for (img of heroImages; track img.url) {
+            <div [className]="$index === currentHeroIndex() ? 'absolute inset-0 w-full h-full opacity-100 transition-opacity duration-1000' : 'absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000'">
+              <img [src]="img.url" [alt]="img.name" class="w-full h-full object-cover object-center animate-ken-burns" />
+            </div>
+          }
+
+          <!-- 💡 ANIMATED HEADLIGHTS & AMBIENT VIP GOLDEN LIGHT SPOTLIGHTS 💡 -->
+          <div class="absolute top-1/2 left-1/4 w-72 h-72 rounded-full bg-[#C4A77D]/25 pointer-events-none z-10 animate-headlight-glow"></div>
+          <div class="absolute bottom-1/3 right-1/3 w-80 h-80 rounded-full bg-[#FFE8B6]/15 pointer-events-none z-10 animate-headlight-glow" style="animation-delay: 2s;"></div>
+
+          <!-- ✨ ANIMATED GOLDEN LIGHT SWEEP FLARE STREAK ✨ -->
+          <div class="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+            <div class="w-48 h-[200%] bg-gradient-to-r from-transparent via-[#C4A77D]/20 to-transparent blur-md animate-light-streak"></div>
+          </div>
           
           <!-- Gradient Overlay: Solid Dark on Text Side, Fading to Reveal Car on Other Side -->
           @if (langService.isRtl()) {
@@ -254,6 +267,16 @@
             <div class="absolute inset-0 bg-gradient-to-r from-[#07080A] via-[#07080A]/90 sm:via-[#07080A]/85 to-transparent z-10"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-[#07080A] via-transparent to-[#07080A]/60 z-10"></div>
           }
+
+          <!-- Live Car Model Indicator Badge & Dots in Bottom Corner -->
+          <div class="absolute bottom-6 left-6 z-20 hidden sm:flex items-center gap-3 bg-black/75 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#C4A77D]/40 text-xs shadow-xl">
+            <div class="flex items-center gap-1.5">
+              @for (img of heroImages; track img.url) {
+                <button (click)="currentHeroIndex.set($index)" [className]="$index === currentHeroIndex() ? 'w-2.5 h-2.5 rounded-full bg-[#C4A77D] shadow-[0_0_8px_#C4A77D] transition-all' : 'w-2 h-2 rounded-full bg-gray-600 hover:bg-gray-400 transition-all'"></button>
+              }
+            </div>
+            <span class="text-[11px] font-bold gold-text font-mono">{{ heroImages[currentHeroIndex()].name }}</span>
+          </div>
         </div>
 
         <!-- Content Container (Overlapping directly on top of the full-width banner) -->
