@@ -1187,21 +1187,21 @@
                 </div>
 
                 <!-- 📅 DATE & TIME PICKERS WITH REAL-TIME AVAILABILITY CHECKER 📅 -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 rounded-xl bg-[#08090C] border border-[#232734]">
-                  <div class="space-y-1">
-                    <label class="text-gray-300 font-semibold block flex items-center gap-1">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 rounded-xl bg-[#08090C] border border-[#232734] min-w-0">
+                  <div class="space-y-1 min-w-0 w-full">
+                    <label class="text-gray-300 font-semibold block flex items-center gap-1 text-xs">
                       <i class="bi bi-calendar-event text-[#C4A77D]"></i>
                       <span>{{ langService.isRtl() ? 'تاريخ الرحلة / الحجز:' : 'Reservation Date:' }}</span>
                     </label>
-                    <input type="date" [(ngModel)]="searchQuery.date" (change)="checkVehicleAvailability()" class="w-full bg-[#0F1117] border border-[#262A36] rounded-xl px-3 py-2 text-white font-mono focus:border-[#C4A77D] focus:outline-none" />
+                    <input type="date" [(ngModel)]="searchQuery.date" (change)="checkVehicleAvailability()" class="w-full max-w-full min-w-0 bg-[#0F1117] border border-[#262A36] rounded-xl px-3 py-2.5 text-white font-mono focus:border-[#C4A77D] focus:outline-none text-xs sm:text-sm box-border" />
                   </div>
 
-                  <div class="space-y-1">
-                    <label class="text-gray-300 font-semibold block flex items-center gap-1">
+                  <div class="space-y-1 min-w-0 w-full">
+                    <label class="text-gray-300 font-semibold block flex items-center gap-1 text-xs">
                       <i class="bi bi-clock-history text-[#C4A77D]"></i>
                       <span>{{ langService.isRtl() ? 'وقت الانطلاق المطلوب:' : 'Pickup Time:' }}</span>
                     </label>
-                    <input type="time" [(ngModel)]="searchQuery.time" (change)="checkVehicleAvailability()" class="w-full bg-[#0F1117] border border-[#262A36] rounded-xl px-3 py-2 text-white font-mono focus:border-[#C4A77D] focus:outline-none" />
+                    <input type="time" [(ngModel)]="searchQuery.time" (change)="checkVehicleAvailability()" class="w-full max-w-full min-w-0 bg-[#0F1117] border border-[#262A36] rounded-xl px-3 py-2.5 text-white font-mono focus:border-[#C4A77D] focus:outline-none text-xs sm:text-sm box-border" />
                   </div>
                 </div>
 
