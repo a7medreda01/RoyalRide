@@ -1389,52 +1389,6 @@
                       <!-- Top-Right Finder Pattern -->
                       <rect x="20" y="2" width="7" height="7" fill="black"/>
                       <rect x="21" y="3" width="5" height="5" fill="white"/>
-                      <rect x="22" y="4" width="3" height="3" fill="black"/>
-
-                      <!-- Bottom-Left Finder Pattern -->
-                      <rect x="2" y="20" width="7" height="7" fill="black"/>
-                      <rect x="3" y="21" width="5" height="5" fill="white"/>
-                      <rect x="4" y="22" width="3" height="3" fill="black"/>
-
-                      <!-- Timing & Alignment Patterns -->
-                      <rect x="10" y="4" width="1" height="1" fill="black"/>
-                      <rect x="12" y="4" width="1" height="1" fill="black"/>
-                      <rect x="14" y="4" width="1" height="1" fill="black"/>
-                      <rect x="16" y="4" width="1" height="1" fill="black"/>
-                      
-                      <rect x="4" y="10" width="1" height="1" fill="black"/>
-                      <rect x="4" y="12" width="1" height="1" fill="black"/>
-                      <rect x="4" y="14" width="1" height="1" fill="black"/>
-                      <rect x="4" y="16" width="1" height="1" fill="black"/>
-
-                      <!-- Alignment Sub-block -->
-                      <rect x="20" y="20" width="5" height="5" fill="black"/>
-                      <rect x="21" y="21" width="3" height="3" fill="white"/>
-                      <rect x="22" y="22" width="1" height="1" fill="black"/>
-
-                      <!-- Data Modules Grid -->
-                      <rect x="10" y="2" width="2" height="1" fill="black"/>
-                      <rect x="13" y="2" width="1" height="2" fill="black"/>
-                      <rect x="15" y="2" width="3" height="1" fill="black"/>
-                      <rect x="11" y="6" width="2" height="2" fill="black"/>
-                      <rect x="15" y="6" width="2" height="1" fill="black"/>
-                      <rect x="10" y="9" width="3" height="1" fill="black"/>
-                      <rect x="14" y="9" width="2" height="2" fill="black"/>
-                      <rect x="17" y="9" width="1" height="3" fill="black"/>
-                      <rect x="10" y="11" width="1" height="3" fill="black"/>
-                      <rect x="12" y="12" width="4" height="1" fill="black"/>
-                      <rect x="17" y="13" width="2" height="2" fill="black"/>
-                      <rect x="10" y="15" width="3" height="1" fill="black"/>
-                      <rect x="14" y="15" width="2" height="3" fill="black"/>
-                      <rect x="11" y="17" width="2" height="2" fill="black"/>
-                      <rect x="17" y="16" width="1" height="3" fill="black"/>
-                      <rect x="10" y="20" width="2" height="2" fill="black"/>
-                      <rect x="13" y="20" width="2" height="1" fill="black"/>
-                      <rect x="16" y="20" width="3" height="1" fill="black"/>
-                      <rect x="10" y="23" width="3" height="1" fill="black"/>
-                      <rect x="14" y="23" width="2" height="2" fill="black"/>
-                      <rect x="17" y="23" width="2" height="1" fill="black"/>
-                      <rect x="10" y="25" width="1" height="2" fill="black"/>
                       <rect x="12" y="26" width="3" height="1" fill="black"/>
                       <rect x="16" y="25" width="3" height="2" fill="black"/>
                     </svg>
@@ -1443,60 +1397,6 @@
 
               </div>
 
-              <!-- Action Buttons -->
-              <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-1">
-                <button (click)="downloadInvoicePng()" [disabled]="isDownloadingPng()" class="w-full sm:w-auto btn-gold py-2.5 px-6 text-xs font-bold shadow-xl flex items-center justify-center gap-2">
-                  <i class="bi bi-download"></i>
-                  <span>{{ isDownloadingPng() ? (langService.isRtl() ? 'جاري تجهيز الصورة...' : 'Generating Image...') : (langService.isRtl() ? 'تنزيل الفاتورة كصورة PNG' : 'Download Invoice PNG') }}</span>
-                </button>
-
-                <button (click)="closeBookingModal()" class="w-full sm:w-auto btn-outline-gold py-2.5 px-6 text-xs font-bold">
-                  {{ langService.isRtl() ? 'إغلاق ومتابعة الحجوزات' : 'Close & View Bookings' }}
-                </button>
-              </div>
-
-            </div>
-          }            <rect x="4" y="12" width="1" height="1" fill="black"/>
-                      <rect x="4" y="14" width="1" height="1" fill="black"/>
-                      <rect x="4" y="16" width="1" height="1" fill="black"/>
-
-                      <!-- Alignment Sub-block -->
-                      <rect x="20" y="20" width="5" height="5" fill="black"/>
-                      <rect x="21" y="21" width="3" height="3" fill="white"/>
-                      <rect x="22" y="22" width="1" height="1" fill="black"/>
-
-                      <!-- Data Modules Grid -->
-                      <rect x="10" y="2" width="2" height="1" fill="black"/>
-                      <rect x="13" y="2" width="1" height="2" fill="black"/>
-                      <rect x="15" y="2" width="3" height="1" fill="black"/>
-                      <rect x="11" y="6" width="2" height="2" fill="black"/>
-                      <rect x="15" y="6" width="2" height="1" fill="black"/>
-                      <rect x="10" y="9" width="3" height="1" fill="black"/>
-                      <rect x="14" y="9" width="2" height="2" fill="black"/>
-                      <rect x="17" y="9" width="1" height="3" fill="black"/>
-                      <rect x="10" y="11" width="1" height="3" fill="black"/>
-                      <rect x="12" y="12" width="4" height="1" fill="black"/>
-                      <rect x="17" y="13" width="2" height="2" fill="black"/>
-                      <rect x="10" y="15" width="3" height="1" fill="black"/>
-                      <rect x="14" y="15" width="2" height="3" fill="black"/>
-                      <rect x="11" y="17" width="2" height="2" fill="black"/>
-                      <rect x="17" y="16" width="1" height="3" fill="black"/>
-                      <rect x="10" y="20" width="2" height="2" fill="black"/>
-                      <rect x="13" y="20" width="2" height="1" fill="black"/>
-                      <rect x="16" y="20" width="3" height="1" fill="black"/>
-                      <rect x="10" y="23" width="3" height="1" fill="black"/>
-                      <rect x="14" y="23" width="2" height="2" fill="black"/>
-                      <rect x="17" y="23" width="2" height="1" fill="black"/>
-                      <rect x="10" y="25" width="1" height="2" fill="black"/>
-                      <rect x="12" y="26" width="3" height="1" fill="black"/>
-                      <rect x="16" y="25" width="3" height="2" fill="black"/>
-                    </svg>
-                  </div>
-                </div>
-
-              </div>
-
-              <!-- Action Buttons -->
               <!-- Action Buttons -->
               <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-1">
                 <button (click)="downloadInvoicePng()" [disabled]="isDownloadingPng()" class="w-full sm:w-auto btn-gold py-2.5 px-6 text-xs font-bold shadow-xl flex items-center justify-center gap-2">
@@ -1508,12 +1408,9 @@
                   {{ langService.isRtl() ? 'إغلاق ومتابعة الحجوزات' : 'Close & Go to My Bookings' }}
                 </button>
               </div>
-
             </div>
           }
-
         </div>
-
       </div>
     </div>
   }

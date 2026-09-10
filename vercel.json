@@ -1,19 +1,10 @@
 {
   "version": 2,
-  "name": "royalride-angular",
-  "builds": [
+  "outputDirectory": "dist/royalride-angular/browser",
+  "rewrites": [
     {
-      "src": "dist/royalride-angular/**",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist/royalride-angular"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/dist/royalride-angular/$1"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
