@@ -1,0 +1,1541 @@
+<div class="min-h-screen bg-[#07080A] text-[#F3F3F4] font-sans selection:bg-[#C4A77D] selection:text-black overflow-x-hidden" [attr.dir]="langService.isRtl() ? 'rtl' : 'ltr'">
+  
+  <!-- ── UNIFIED EXECUTIVE VIP NAVBAR (TOP STICKY) ── -->
+  <header class="sticky top-0 z-40 bg-[#07080A]/95 backdrop-blur-md border-b border-[#181A22] px-3 sm:px-6 lg:px-12 py-2.5 sm:py-3">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
+      
+      <!-- Brand Logo (Gold Royal Crest Logo) -->
+      <div (click)="setActiveTab('home')" class="flex items-center gap-2.5 sm:gap-3.5 cursor-pointer group shrink-0">
+        <img src="/logo.png" alt="ROYALRIDE Logo" class="h-9 sm:h-11 w-auto object-contain drop-shadow-[0_2px_10px_rgba(196,167,125,0.3)] group-hover:scale-105 transition-transform shrink-0" />
+        <div>
+          <span class="text-xs sm:text-base font-extrabold tracking-widest text-white block leading-tight">ROYALRIDE</span>
+          <span class="text-[8px] sm:text-[10px] tracking-wider text-[#C4A77D] font-bold block uppercase">
+            {{ langService.isRtl() ? 'الرحلة الملكية VIP' : 'Royal Chauffeur VIP' }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-6 text-xs font-semibold tracking-wide">
+        <button (click)="setActiveTab('home')" [className]="activeTab() === 'home' ? 'text-[#C4A77D] font-bold relative py-1.5' : 'text-gray-300 hover:text-white py-1.5 transition-colors'">
+          {{ langService.isRtl() ? 'الرئيسية' : 'Home' }}
+          @if (activeTab() === 'home') { <span class="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#C4A77D]"></span> }
+        </button>
+
+        <button (click)="setActiveTab('fleet')" [className]="activeTab() === 'fleet' ? 'text-[#C4A77D] font-bold relative py-1.5' : 'text-gray-300 hover:text-white py-1.5 transition-colors'">
+          <i class="bi bi-crown text-[#C4A77D] me-1"></i> {{ langService.isRtl() ? 'الأسطول الملكي' : 'Royal Fleet' }}
+          @if (activeTab() === 'fleet') { <span class="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#C4A77D]"></span> }
+        </button>
+
+        <button (click)="setActiveTab('tours')" [className]="activeTab() === 'tours' ? 'text-[#C4A77D] font-bold relative py-1.5' : 'text-gray-300 hover:text-white py-1.5 transition-colors'">
+          <i class="bi bi-stars text-[#C4A77D] me-1"></i> {{ langService.isRtl() ? 'الباقات والجولات' : 'Packages & Tours' }}
+          @if (activeTab() === 'tours') { <span class="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#C4A77D]"></span> }
+        </button>
+
+        <button (click)="setActiveTab('about')" [className]="activeTab() === 'about' ? 'text-[#C4A77D] font-bold relative py-1.5' : 'text-gray-300 hover:text-white py-1.5 transition-colors'">
+          <i class="bi bi-info-circle text-[#C4A77D] me-1"></i> {{ langService.isRtl() ? 'عن الشركة' : 'About Us' }}
+          @if (activeTab() === 'about') { <span class="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#C4A77D]"></span> }
+        </button>
+
+        <button (click)="setActiveTab('contact')" [className]="activeTab() === 'contact' ? 'text-[#C4A77D] font-bold relative py-1.5' : 'text-gray-300 hover:text-white py-1.5 transition-colors'">
+          <i class="bi bi-telephone text-[#C4A77D] me-1"></i> {{ langService.isRtl() ? 'تواصل معنا' : 'Contact Us' }}
+          @if (activeTab() === 'contact') { <span class="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#C4A77D]"></span> }
+        </button>
+
+        <button (click)="setActiveTab('profile')" [className]="activeTab() === 'profile' ? 'text-[#C4A77D] font-bold relative py-1.5' : 'text-gray-300 hover:text-white py-1.5 transition-colors'">
+          <i class="bi bi-person-badge text-[#C4A77D] me-1"></i> {{ langService.isRtl() ? 'حسابي وحجوزاتي' : 'My Bookings' }}
+          @if (activeTab() === 'profile') { <span class="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#C4A77D]"></span> }
+        </button>
+      </nav>
+
+      <!-- Right Actions (Desktop & Mobile Responsive) -->
+      <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+        <a [href]="companyInfo.whatsappUrl" target="_blank" rel="noopener noreferrer" class="hidden xl:flex items-center gap-1.5 text-emerald-400 hover:underline font-mono text-xs dir-ltr">
+          <i class="bi bi-lightning-charge-fill"></i>
+          <span>{{ companyInfo.phone1 }}</span>
+        </a>
+
+        @if (user().isLoggedIn) {
+          <button (click)="setActiveTab('profile')" class="hidden lg:flex items-center gap-1.5 text-[#C4A77D] hover:underline text-xs font-semibold">
+            <i class="bi bi-person-circle"></i>
+            <span class="max-w-[100px] truncate">{{ user().name }}</span>
+          </button>
+        } @else {
+          <button (click)="openAuthModal()" class="hidden lg:flex text-gray-300 hover:text-[#C4A77D] text-xs font-semibold transition-colors items-center gap-1.5">
+            <i class="bi bi-shield-lock-fill"></i>
+            <span>{{ langService.isRtl() ? 'تسجيل الدخول' : 'Login' }}</span>
+          </button>
+        }
+
+        <button (click)="langService.toggleLanguage()" class="hidden lg:flex px-2.5 py-1 rounded-full bg-[#14161F] border border-[#262A34] text-gray-300 hover:text-white hover:border-[#C4A77D] transition-colors text-[11px] font-semibold items-center gap-1">
+          <i class="bi bi-globe2"></i>
+          <span>{{ langService.currentLang() === 'ar' ? 'English' : 'العربية' }}</span>
+        </button>
+
+        <button (click)="startBooking()" class="btn-gold py-1 px-2.5 sm:py-2 sm:px-4 text-[10px] sm:text-xs font-bold shadow-lg flex items-center gap-1 shrink-0">
+          <i class="bi bi-crown-fill text-[10px] sm:text-xs"></i>
+          <span>{{ langService.isRtl() ? 'احجز VIP' : 'Reserve VIP' }}</span>
+        </button>
+
+        <!-- Mobile Menu Toggle Button (Visible only on mobile screens < 1024px) -->
+        <button (click)="toggleMobileMenu()" class="lg:hidden p-1.5 sm:p-2 rounded-xl bg-[#141622] border border-[#262A38] text-gray-300 hover:text-white text-base sm:text-lg flex items-center justify-center shrink-0">
+          <i [className]="isMobileMenuOpen() ? 'bi bi-x-lg text-[#C4A77D]' : 'bi bi-list text-[#C4A77D]'"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- 📱 MOBILE SLIDE-OVER NAVIGATION DRAWER MENU 📱 -->
+    @if (isMobileMenuOpen()) {
+      <div class="lg:hidden mt-3 p-4 rounded-2xl bg-[#0B0D14]/98 border border-[#C4A77D]/40 backdrop-blur-xl shadow-2xl space-y-3 text-xs animate-fadeIn">
+        <div class="grid grid-cols-2 gap-2 border-b border-[#1E2232] pb-3">
+          <button (click)="setActiveTab('home')" [className]="activeTab() === 'home' ? 'p-2.5 rounded-xl bg-[#C4A77D] text-black font-bold flex items-center gap-2' : 'p-2.5 rounded-xl bg-[#141622] text-gray-300 font-medium flex items-center gap-2'">
+            <i class="bi bi-house-door-fill"></i>
+            <span>{{ langService.isRtl() ? 'الرئيسية' : 'Home' }}</span>
+          </button>
+          <button (click)="setActiveTab('fleet')" [className]="activeTab() === 'fleet' ? 'p-2.5 rounded-xl bg-[#C4A77D] text-black font-bold flex items-center gap-2' : 'p-2.5 rounded-xl bg-[#141622] text-gray-300 font-medium flex items-center gap-2'">
+            <i class="bi bi-crown"></i>
+            <span>{{ langService.isRtl() ? 'الأسطول الملكي' : 'Royal Fleet' }}</span>
+          </button>
+          <button (click)="setActiveTab('tours')" [className]="activeTab() === 'tours' ? 'p-2.5 rounded-xl bg-[#C4A77D] text-black font-bold flex items-center gap-2' : 'p-2.5 rounded-xl bg-[#141622] text-gray-300 font-medium flex items-center gap-2'">
+            <i class="bi bi-stars"></i>
+            <span>{{ langService.isRtl() ? 'الجولات والباقات' : 'Packages' }}</span>
+          </button>
+          <button (click)="setActiveTab('about')" [className]="activeTab() === 'about' ? 'p-2.5 rounded-xl bg-[#C4A77D] text-black font-bold flex items-center gap-2' : 'p-2.5 rounded-xl bg-[#141622] text-gray-300 font-medium flex items-center gap-2'">
+            <i class="bi bi-info-circle"></i>
+            <span>{{ langService.isRtl() ? 'عن الشركة' : 'About' }}</span>
+          </button>
+          <button (click)="setActiveTab('contact')" [className]="activeTab() === 'contact' ? 'p-2.5 rounded-xl bg-[#C4A77D] text-black font-bold flex items-center gap-2' : 'p-2.5 rounded-xl bg-[#141622] text-gray-300 font-medium flex items-center gap-2'">
+            <i class="bi bi-telephone"></i>
+            <span>{{ langService.isRtl() ? 'تواصل معنا' : 'Contact' }}</span>
+          </button>
+          <button (click)="setActiveTab('profile')" [className]="activeTab() === 'profile' ? 'p-2.5 rounded-xl bg-[#C4A77D] text-black font-bold flex items-center gap-2' : 'p-2.5 rounded-xl bg-[#141622] text-gray-300 font-medium flex items-center gap-2'">
+            <i class="bi bi-person-badge"></i>
+            <span>{{ langService.isRtl() ? 'حسابي وحجوزاتي' : 'My Bookings' }}</span>
+          </button>
+        </div>
+
+        <div class="flex items-center justify-between pt-1">
+          <button (click)="openAuthModal()" class="text-[#C4A77D] font-bold flex items-center gap-1.5">
+            <i class="bi bi-shield-lock-fill"></i>
+            <span>{{ user().isLoggedIn ? user().name : (langService.isRtl() ? 'تسجيل الدخول / حساب جديد' : 'Login / Register') }}</span>
+          </button>
+
+          <button (click)="langService.toggleLanguage()" class="px-3 py-1.5 rounded-lg bg-[#141622] border border-[#262A38] text-gray-300 font-bold flex items-center gap-1">
+            <i class="bi bi-globe2"></i>
+            <span>{{ langService.currentLang() === 'ar' ? 'English' : 'العربية' }}</span>
+          </button>
+        </div>
+      </div>
+    }
+  </header>
+
+  <!-- ── SEARCH BAR WIDGET (TOP OF FLEET & TOURS PAGES) ── -->
+  @if (activeTab() === 'fleet' || activeTab() === 'tours') {
+    <div class="max-w-7xl mx-auto px-4 lg:px-12 pt-6">
+      <div class="luxury-card p-4 sm:p-6 border-[#C4A77D]/35 bg-[#0B0D14]/95 backdrop-blur-xl shadow-2xl space-y-4">
+        
+        <!-- Service Type Tabs Bar -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#1E2232] pb-4">
+          <div class="flex items-center gap-2 text-[#C4A77D] font-bold text-xs">
+            <i class="bi bi-search text-base"></i>
+            <span>{{ langService.isRtl() ? 'محرك حجز الليموزين VIP' : 'VIP Chauffeur Search' }}</span>
+          </div>
+
+          <div class="grid grid-cols-3 sm:flex items-center gap-1.5 bg-[#121420] p-1 rounded-xl border border-[#232738] text-xs">
+            <button (click)="setServiceType('airport')" [className]="searchQuery.serviceType === 'airport' ? 'py-2 px-3 rounded-lg bg-[#C4A77D] text-black font-bold flex items-center justify-center gap-1 shadow-md transition-all' : 'py-2 px-3 rounded-lg text-gray-300 hover:text-white flex items-center justify-center gap-1 transition-all'">
+              <i class="bi bi-airplane-fill"></i>
+              <span class="text-[11px] sm:text-xs">{{ langService.isRtl() ? 'المطارات' : 'Airports' }}</span>
+            </button>
+            <button (click)="setServiceType('hourly')" [className]="searchQuery.serviceType === 'hourly' ? 'py-2 px-3 rounded-lg bg-[#C4A77D] text-black font-bold flex items-center justify-center gap-1 shadow-md transition-all' : 'py-2 px-3 rounded-lg text-gray-300 hover:text-white flex items-center justify-center gap-1 transition-all'">
+              <i class="bi bi-clock-history"></i>
+              <span class="text-[11px] sm:text-xs">{{ langService.isRtl() ? 'بالساعة' : 'Hourly' }}</span>
+            </button>
+            <button (click)="setServiceType('tours')" [className]="searchQuery.serviceType === 'tours' ? 'py-2 px-3 rounded-lg bg-[#C4A77D] text-black font-bold flex items-center justify-center gap-1 shadow-md transition-all' : 'py-2 px-3 rounded-lg text-gray-300 hover:text-white flex items-center justify-center gap-1 transition-all'">
+              <i class="bi bi-bank2"></i>
+              <span class="text-[11px] sm:text-xs">{{ langService.isRtl() ? 'جولات VIP' : 'VIP Tours' }}</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Inputs Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs">
+          <div class="space-y-1 bg-[#121420] p-2.5 rounded-xl border border-[#202434] hover:border-[#C4A77D]/40 transition-colors">
+            <label class="text-[#C4A77D] font-bold text-[11px] flex items-center gap-1">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span>{{ langService.isRtl() ? 'الانطلاق (من)' : 'Pickup' }}</span>
+            </label>
+            <input type="text" [(ngModel)]="searchQuery.pickupCity" (change)="recalculateRoute()" class="w-full bg-transparent text-white font-medium focus:outline-none placeholder-gray-500" />
+          </div>
+
+          <div class="space-y-1 bg-[#121420] p-2.5 rounded-xl border border-[#202434] hover:border-[#C4A77D]/40 transition-colors">
+            <label class="text-[#C4A77D] font-bold text-[11px] flex items-center gap-1">
+              <i class="bi bi-flag-fill"></i>
+              <span>{{ langService.isRtl() ? 'الوجهة (إلى)' : 'Dropoff' }}</span>
+            </label>
+            <input type="text" [(ngModel)]="searchQuery.dropoffCity" (change)="recalculateRoute()" class="w-full bg-transparent text-white font-medium focus:outline-none placeholder-gray-500" />
+          </div>
+
+          @if (searchQuery.serviceType === 'airport') {
+            <div class="space-y-1 bg-[#121420] p-2.5 rounded-xl border border-[#202434] hover:border-[#C4A77D]/40 transition-colors">
+              <label class="text-[#C4A77D] font-bold text-[11px] flex items-center gap-1">
+                <i class="bi bi-journal-text"></i>
+                <span>{{ langService.isRtl() ? 'رقم الرحلة والصالة' : 'Flight & Terminal' }}</span>
+              </label>
+              <input type="text" [(ngModel)]="searchQuery.flightNumber" placeholder="SV-1024 / صالة 1" class="w-full bg-transparent text-white font-medium focus:outline-none placeholder-gray-500" />
+            </div>
+          } @else if (searchQuery.serviceType === 'hourly') {
+            <div class="space-y-1 bg-[#121420] p-2.5 rounded-xl border border-[#202434] hover:border-[#C4A77D]/40 transition-colors">
+              <label class="text-[#C4A77D] font-bold text-[11px] flex items-center gap-1">
+                <i class="bi bi-hourglass-split"></i>
+                <span>{{ langService.isRtl() ? 'مدة الساعات' : 'Chauffeur Hours' }}</span>
+              </label>
+              <select [(ngModel)]="searchQuery.hourlyDuration" class="w-full bg-transparent text-white font-medium focus:outline-none">
+                <option [ngValue]="4" class="bg-[#121420]">4 ساعات (نصف يوم)</option>
+                <option [ngValue]="8" class="bg-[#121420]">8 ساعات</option>
+                <option [ngValue]="12" class="bg-[#121420]">12 ساعة (يوم)</option>
+                <option [ngValue]="24" class="bg-[#121420]">24 ساعة (يومان)</option>
+              </select>
+            </div>
+          } @else {
+            <div class="space-y-1 bg-[#121420] p-2.5 rounded-xl border border-[#202434] hover:border-[#C4A77D]/40 transition-colors">
+              <label class="text-[#C4A77D] font-bold text-[11px] flex items-center gap-1">
+                <i class="bi bi-person-badge-fill"></i>
+                <span>{{ langService.isRtl() ? 'مرشد سياحي' : 'VIP Guide' }}</span>
+              </label>
+              <select [(ngModel)]="searchQuery.includeGuide" class="w-full bg-transparent text-white font-medium focus:outline-none">
+                <option [ngValue]="true" class="bg-[#121420]">نعم (مرشد خاص)</option>
+                <option [ngValue]="false" class="bg-[#121420]">بدون مرشد</option>
+              </select>
+            </div>
+          }
+
+          <div class="space-y-1 bg-[#121420] p-2.5 rounded-xl border border-[#202434] hover:border-[#C4A77D]/40 transition-colors">
+            <label class="text-[#C4A77D] font-bold text-[11px] flex items-center gap-1">
+              <i class="bi bi-calendar3"></i>
+              <span>{{ langService.isRtl() ? 'التاريخ والوقت' : 'Schedule' }}</span>
+            </label>
+            <input type="date" [(ngModel)]="searchQuery.date" class="w-full bg-transparent text-white font-medium focus:outline-none" />
+          </div>
+
+          <div class="flex items-end">
+            <button (click)="executeSearch()" class="w-full btn-gold py-3 px-4 text-xs font-bold shadow-xl flex items-center justify-center gap-2">
+              <span>{{ langService.isRtl() ? 'البحث عن السيارات' : 'Search Fleet' }}</span>
+              <i class="bi bi-arrow-left" [class.rotate-180]="!langService.isRtl()"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Destination Presets -->
+        <div class="flex flex-wrap items-center gap-1.5 pt-2 border-t border-[#1C202E] text-[11px]">
+          <span class="text-gray-400 font-semibold flex items-center gap-1"><i class="bi bi-pin-map text-[#C4A77D]"></i> {{ langService.isRtl() ? 'وجهات شائعة:' : 'Popular Destinations:' }}</span>
+          @for (loc of popularLocations.slice(0, 4); track loc.nameAr) {
+            <button (click)="selectPickupLocation(loc)" class="px-2.5 py-1 rounded-lg bg-[#141724] hover:bg-[#C4A77D]/20 hover:border-[#C4A77D] border border-[#25293A] text-gray-300 hover:text-white transition-all">
+              {{ loc.nameAr.split(' - ')[0] }}
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- ── 1. HOME VIEW ── -->
+  @if (activeTab() === 'home') {
+    <main class="w-full space-y-16 lg:space-y-24 pb-16">
+      
+      <!-- 👑 FULL-WIDTH LUXURY HERO BANNER WITH OVERLAPPING TEXT 👑 -->
+      <section class="relative w-full min-h-[85vh] lg:min-h-[88vh] flex items-center overflow-hidden bg-[#07080A]">
+
+        <!-- Full-Bleed Background Car Banner Image -->
+        <div class="absolute inset-0 w-full h-full z-0">
+          <img src="/hero.jpg" alt="Mercedes-Maybach S-Class VIP" class="w-full h-full object-cover object-center scale-105" />
+          
+          <!-- Gradient Overlay: Solid Dark on Text Side, Fading to Reveal Car on Other Side -->
+          @if (langService.isRtl()) {
+            <!-- RTL (Arabic): Solid dark on RIGHT (where text is), fading to transparent on LEFT (where car is) -->
+            <div class="absolute inset-0 bg-gradient-to-l from-[#07080A] via-[#07080A]/90 sm:via-[#07080A]/85 to-transparent z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#07080A] via-transparent to-[#07080A]/60 z-10"></div>
+          } @else {
+            <!-- LTR (English): Solid dark on LEFT (where text is), fading to transparent on RIGHT (where car is) -->
+            <div class="absolute inset-0 bg-gradient-to-r from-[#07080A] via-[#07080A]/90 sm:via-[#07080A]/85 to-transparent z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#07080A] via-transparent to-[#07080A]/60 z-10"></div>
+          }
+        </div>
+
+        <!-- Content Container (Overlapping directly on top of the full-width banner) -->
+        <div class="max-w-7xl mx-auto px-4 lg:px-12 w-full relative z-20 py-12 lg:py-20">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <!-- Text Content Column (Overlapping the dark gradient side of the banner) -->
+            <div class="lg:col-span-7 space-y-5 sm:space-y-7">
+              <div class="space-y-3 sm:space-y-4">
+                @if (langService.isRtl()) {
+                  <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.2] space-y-1 sm:space-y-2">
+                    <span class="block text-white drop-shadow-md">الرحلة الملكية —</span>
+                    <span class="block gold-text drop-shadow-md">ليموزين VIP الفاخر.</span>
+                    <span class="block text-[#D5D8E0] text-lg sm:text-2xl lg:text-3xl font-semibold drop-shadow">خدمة تنقية تفوق التوقعات في المملكة.</span>
+                  </h1>
+                } @else {
+                  <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.2] space-y-1 sm:space-y-2">
+                    <span class="block text-white drop-shadow-md">ROYALRIDE —</span>
+                    <span class="block gold-text drop-shadow-md">VIP Limousine Luxury.</span>
+                    <span class="block text-[#D5D8E0] text-lg sm:text-2xl lg:text-3xl font-semibold drop-shadow">Executive Chauffeur Service in Saudi Arabia.</span>
+                  </h1>
+                }
+
+                <p class="text-xs sm:text-sm text-[#B0B4BE] max-w-lg leading-relaxed font-normal drop-shadow">
+                  {{ langService.isRtl() ? 'أسطول مرسيدس مايباخ وV-Class وإسكاليد الرئاسية مع سائقين VIP بلباس رسمي ودقة مواعيد متناهية في كافة مدن ومطارات المملكة.' : 'Executive Mercedes-Maybach, V-Class & Escalade limousine chauffeur services with dedicated bilingual drivers across all Saudi cities and airports.' }}
+                </p>
+              </div>
+
+              <!-- Gold Pill CTA Button -->
+              <div class="pt-1">
+                <button (click)="startBooking(fleetList[0])" class="inline-flex items-center justify-between gap-4 py-3 px-6 sm:py-3.5 sm:px-8 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#C4A77D] to-[#B38F56] text-black font-bold text-xs sm:text-sm shadow-2xl hover:brightness-110 active:scale-95 transition-all group">
+                  <span class="font-extrabold tracking-wide">{{ langService.isRtl() ? 'احجز ليموزين VIP الآن' : 'Book Executive Chauffeur' }}</span>
+                  <div class="w-7 h-7 rounded-full bg-[#161410] text-[#C4A77D] flex items-center justify-center font-bold text-xs shadow-md group-hover:scale-105 transition-transform shrink-0">
+                    <i class="bi bi-arrow-left text-xs" [class.rotate-180]="!langService.isRtl()"></i>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 🔍 SEARCH BAR WIDGET ON HOMEPAGE (DIRECTLY BELOW HERO) ── -->
+      <section class="max-w-7xl mx-auto px-4 lg:px-12">
+        <div class="luxury-card p-4 sm:p-6 border-[#C4A77D]/35 bg-[#0B0D14]/95 backdrop-blur-xl shadow-2xl space-y-4">
+          
+          <!-- Service Type Tabs Bar -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#1E2232] pb-4">
+            <div class="flex items-center gap-2 text-[#C4A77D] font-bold text-xs">
+              <i class="bi bi-search text-base"></i>
+              <span>{{ langService.isRtl() ? 'محرك حجز الليموزين VIP' : 'VIP Chauffeur Search' }}</span>
+            </div>
+
+            <div class="grid grid-cols-3 sm:flex items-center gap-1.5 bg-[#121420] p-1 rounded-xl border border-[#232738] text-xs">
+              <button (click)="setServiceType('airport')" [className]="searchQuery.serviceType === 'airport' ? 'py-2 px-3 rounded-lg bg-[#C4A77D] text-black font-bold flex items-center justify-center gap-1 shadow-md transition-all' : 'py-2 px-3 rounded-lg text-gray-300 hover:text-white flex items-center justify-center gap-1 transition-all'">
+                <i class="bi bi-airplane-fill"></i>
+                <span class="text-[11px] sm:text-xs">{{ langService.isRtl() ? 'المطارات' : 'Airports' }}</span>
+              </button>
+              <button (click)="setServiceType('hourly')" [className]="searchQuery.serviceType === 'hourly' ? 'py-2 px-3 rounded-lg bg-[#C4A77D] text-black font-bold flex items-center justify-center gap-1 shadow-md transition-all' : 'py-2 px-3 rounded-lg text-gray-300 hover:text-white flex items-center justify-center gap-1 transition-all'">
+                <i class="bi bi-clock-history"></i>
+                <span class="text-[11px] sm:text-xs">{{ langService.isRtl() ? 'بالساعة' : 'Hourly' }}</span>
+              </button>
+              <button (click)="setServiceType('tours')" [className]="searchQuery.serviceType === 'tours' ? 'py-2 px-3 rounded-lg bg-[#C4A77D] text-black font-bold flex items-center justify-center gap-1 shadow-md transition-all' : 'py-2 px-3 rounded-lg text-gray-300 hover:text-white flex items-center justify-center gap-1 transition-all'">
+                <i class="bi bi-bank2"></i>
+                <span class="text-[11px] sm:text-xs">{{ langService.isRtl() ? 'جولات VIP' : 'VIP Tours' }}</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Inputs Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs">
+            <div class="space-y-1 bg-[#121420] p-2.5 rounded-xl border border-[#202434] hover:border-[#C4A77D]/40 transition-colors">
+              <label class="text-[#C4A77D] font-bold text-[11px] flex items-center gap-1">
+                <i class="bi bi-geo-alt-fill"></i>
+                <span>{{ langService.isRtl() ? 'الانطلاق (من)' : 'Pickup' }}</span>
+              </label>
+              <input type="text" [(ngModel)]="searchQuery.pickupCity" (change)="recalculateRoute()" class="w-full bg-transparent text-white font-medium focus:outline-none placeholder-gray-500" />
+            </div>
+
+            <div class="space-y-1 bg-[#121420] p-2.5 rounded-xl border border-[#202434] hover:border-[#C4A77D]/40 transition-colors">
+              <label class="text-[#C4A77D] font-bold text-[11px] flex items-center gap-1">
+                <i class="bi bi-flag-fill"></i>
+                <span>{{ langService.isRtl() ? 'الوجهة (إلى)' : 'Dropoff' }}</span>
+              </label>
+              <input type="text" [(ngModel)]="searchQuery.dropoffCity" (change)="recalculateRoute()" class="w-full bg-transparent text-white font-medium focus:outline-none placeholder-gray-500" />
+            </div>
+
+            @if (searchQuery.serviceType === 'airport') {
+              <div class="space-y-1 bg-[#121420] p-2.5 rounded-xl border border-[#202434] hover:border-[#C4A77D]/40 transition-colors">
+                <label class="text-[#C4A77D] font-bold text-[11px] flex items-center gap-1">
+                  <i class="bi bi-journal-text"></i>
+                  <span>{{ langService.isRtl() ? 'رقم الرحلة والصالة' : 'Flight & Terminal' }}</span>
+                </label>
+                <input type="text" [(ngModel)]="searchQuery.flightNumber" placeholder="SV-1024 / صالة 1" class="w-full bg-transparent text-white font-medium focus:outline-none placeholder-gray-500" />
+              </div>
+            } @else if (searchQuery.serviceType === 'hourly') {
+              <div class="space-y-1 bg-[#121420] p-2.5 rounded-xl border border-[#202434] hover:border-[#C4A77D]/40 transition-colors">
+                <label class="text-[#C4A77D] font-bold text-[11px] flex items-center gap-1">
+                  <i class="bi bi-hourglass-split"></i>
+                  <span>{{ langService.isRtl() ? 'مدة الساعات' : 'Chauffeur Hours' }}</span>
+                </label>
+                <select [(ngModel)]="searchQuery.hourlyDuration" class="w-full bg-transparent text-white font-medium focus:outline-none">
+                  <option [ngValue]="4" class="bg-[#121420]">4 ساعات (نصف يوم)</option>
+                  <option [ngValue]="8" class="bg-[#121420]">8 ساعات</option>
+                  <option [ngValue]="12" class="bg-[#121420]">12 ساعة (يوم)</option>
+                  <option [ngValue]="24" class="bg-[#121420]">24 ساعة (يومان)</option>
+                </select>
+              </div>
+            } @else {
+              <div class="space-y-1 bg-[#121420] p-2.5 rounded-xl border border-[#202434] hover:border-[#C4A77D]/40 transition-colors">
+                <label class="text-[#C4A77D] font-bold text-[11px] flex items-center gap-1">
+                  <i class="bi bi-person-badge-fill"></i>
+                  <span>{{ langService.isRtl() ? 'مرشد سياحي' : 'VIP Guide' }}</span>
+                </label>
+                <select [(ngModel)]="searchQuery.includeGuide" class="w-full bg-transparent text-white font-medium focus:outline-none">
+                  <option [ngValue]="true" class="bg-[#121420]">نعم (مرشد خاص)</option>
+                  <option [ngValue]="false" class="bg-[#121420]">بدون مرشد</option>
+                </select>
+              </div>
+            }
+
+            <div class="space-y-1 bg-[#121420] p-2.5 rounded-xl border border-[#202434] hover:border-[#C4A77D]/40 transition-colors">
+              <label class="text-[#C4A77D] font-bold text-[11px] flex items-center gap-1">
+                <i class="bi bi-calendar3"></i>
+                <span>{{ langService.isRtl() ? 'التاريخ والوقت' : 'Schedule' }}</span>
+              </label>
+              <input type="date" [(ngModel)]="searchQuery.date" class="w-full bg-transparent text-white font-medium focus:outline-none" />
+            </div>
+
+            <div class="flex items-end">
+              <button (click)="executeSearch()" class="w-full btn-gold py-3 px-4 text-xs font-bold shadow-xl flex items-center justify-center gap-2">
+                <span>{{ langService.isRtl() ? 'البحث عن السيارات' : 'Search Fleet' }}</span>
+                <i class="bi bi-arrow-left" [class.rotate-180]="!langService.isRtl()"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Destination Presets -->
+          <div class="flex flex-wrap items-center gap-1.5 pt-2 border-t border-[#1C202E] text-[11px]">
+            <span class="text-gray-400 font-semibold flex items-center gap-1"><i class="bi bi-pin-map text-[#C4A77D]"></i> {{ langService.isRtl() ? 'وجهات شائعة:' : 'Popular Destinations:' }}</span>
+            @for (loc of popularLocations.slice(0, 4); track loc.nameAr) {
+              <button (click)="selectPickupLocation(loc)" class="px-2.5 py-1 rounded-lg bg-[#141724] hover:bg-[#C4A77D]/20 hover:border-[#C4A77D] border border-[#25293A] text-gray-300 hover:text-white transition-all">
+                {{ loc.nameAr.split(' - ')[0] }}
+              </button>
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURE BAR -->
+      <section class="max-w-7xl mx-auto px-4 lg:px-12">
+        <div class="luxury-card p-5 sm:p-6 grid grid-cols-2 md:grid-cols-4 gap-6 border-[#232732]">
+          <div class="flex items-start gap-3">
+            <i class="bi bi-clock-history text-[#C4A77D] text-2xl"></i>
+            <div>
+              <h4 class="font-bold text-white text-xs sm:text-sm">{{ langService.isRtl() ? 'خدمة 24/7' : '24/7 Availability' }}</h4>
+              <p class="text-[11px] text-gray-400">{{ langService.isRtl() ? 'جاهزون لخدمتكم دائماً' : 'Always here for you' }}</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <i class="bi bi-person-badge-fill text-[#C4A77D] text-2xl"></i>
+            <div>
+              <h4 class="font-bold text-white text-xs sm:text-sm">{{ langService.isRtl() ? 'سائقون محترفون' : 'Professional Drivers' }}</h4>
+              <p class="text-[11px] text-gray-400">{{ langService.isRtl() ? 'كفاءة وسرية مطلقة' : 'Trained, courteous & discreet' }}</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <i class="bi bi-car-front-fill text-[#C4A77D] text-2xl"></i>
+            <div>
+              <h4 class="font-bold text-white text-xs sm:text-sm">{{ langService.isRtl() ? 'أسطول VIP حديث' : 'Premium Fleet' }}</h4>
+              <p class="text-[11px] text-gray-400">{{ langService.isRtl() ? 'أحدث موديلات الفخامة' : 'Luxury vehicles, always' }}</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <i class="bi bi-shield-check text-[#C4A77D] text-2xl"></i>
+            <div>
+              <h4 class="font-bold text-white text-xs sm:text-sm">{{ langService.isRtl() ? 'دقة تامة في المواعيد' : 'On-Time Guarantee' }}</h4>
+              <p class="text-[11px] text-gray-400">{{ langService.isRtl() ? 'التزام تام بالوقت' : 'Punctuality you can trust' }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES & FLEET PREVIEW -->
+      <section class="max-w-7xl mx-auto px-4 lg:px-12 space-y-10">
+        
+        <!-- SECTION TITLE -->
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <span class="section-tag">{{ langService.isRtl() ? 'خدماتنا الفاخرة والأسطول' : 'Our Services & Fleet' }}</span>
+            <h2 class="text-2xl sm:text-3xl font-serif-luxury font-bold text-white">
+              {{ langService.isRtl() ? 'حلول تنقل مخصصة وأسطول السيارات الفاخرة' : 'Tailored VIP Transport Solutions & Luxury Fleet' }}
+            </h2>
+          </div>
+        </div>
+
+        <!-- 1. FLEET CARS SUBSECTION (أسطول السيارات الفاخرة) -->
+        <div class="space-y-4">
+          <div class="flex items-center justify-between border-b border-[#232734] pb-3">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <i class="bi bi-crown text-[#C4A77D]"></i>
+              <span>{{ langService.isRtl() ? 'من أسطول السيارات الفاخرة' : 'Featured Royal Fleet' }}</span>
+            </h3>
+            <button (click)="setActiveTab('fleet')" class="hidden sm:flex btn-outline-gold text-xs py-1.5 px-3.5 items-center gap-1.5">
+              <span>{{ langService.isRtl() ? 'عرض الأسطول كاملاً' : 'View Full Fleet' }}</span>
+              <i class="bi bi-chevron-left" [class.rotate-180]="!langService.isRtl()"></i>
+            </button>
+          </div>
+
+          <!-- DESKTOP: Display 4 Fleet Cars -->
+          <div class="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            @for (car of fleetList.slice(0, 4); track car.id) {
+              <div class="luxury-card overflow-hidden flex flex-col justify-between group cursor-pointer border-[#262A36]" (click)="startBooking(car)">
+                <div class="relative h-44 overflow-hidden">
+                  <img [src]="car.image" [alt]="car.name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div class="absolute top-2.5 right-2.5 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-bold text-[#C4A77D] border border-[#C4A77D]/40">
+                    {{ car.category.toUpperCase() }}
+                  </div>
+                </div>
+                <div class="p-4 space-y-2">
+                  <h4 class="text-sm font-bold text-white group-hover:text-[#C4A77D] transition-colors truncate">
+                    {{ langService.isRtl() ? car.titleAr : car.titleEn }}
+                  </h4>
+                  <div class="flex items-center justify-between text-xs pt-1 border-t border-[#1C1E26]">
+                    <span class="text-gray-400 text-[11px]">{{ langService.isRtl() ? 'يبدأ من' : 'Starts from' }}</span>
+                    <span class="font-bold gold-text font-mono text-sm">{{ car.rateTransfer }} SAR</span>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+
+          <!-- MOBILE: Display 2 Fleet Cars + Button -->
+          <div class="block sm:hidden space-y-4">
+            <div class="grid grid-cols-1 gap-4">
+              @for (car of fleetList.slice(0, 2); track car.id) {
+                <div class="luxury-card overflow-hidden flex flex-col justify-between group cursor-pointer border-[#262A36]" (click)="startBooking(car)">
+                  <div class="relative h-48 overflow-hidden">
+                    <img [src]="car.image" [alt]="car.name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div class="absolute top-3 right-3 bg-black/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-[#C4A77D] border border-[#C4A77D]/40">
+                      {{ car.category.toUpperCase() }}
+                    </div>
+                  </div>
+                  <div class="p-4 space-y-2">
+                    <h4 class="text-base font-bold text-white group-hover:text-[#C4A77D] transition-colors">
+                      {{ langService.isRtl() ? car.titleAr : car.titleEn }}
+                    </h4>
+                    <div class="flex items-center justify-between text-xs pt-2 border-t border-[#1C1E26]">
+                      <span class="text-gray-400">{{ langService.isRtl() ? 'يبدأ من' : 'Starts from' }}</span>
+                      <span class="font-bold gold-text font-mono text-base">{{ car.rateTransfer }} SAR</span>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+
+            <!-- Mobile Button for Full Fleet -->
+            <button (click)="setActiveTab('fleet')" class="w-full btn-gold py-3 text-xs font-bold shadow-lg flex items-center justify-center gap-2">
+              <i class="bi bi-car-front-fill"></i>
+              <span>{{ langService.isRtl() ? 'عرض الأسطول كاملاً' : 'View Full Fleet' }}</span>
+              <i class="bi bi-chevron-left" [class.rotate-180]="!langService.isRtl()"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. LUXURY SERVICES & PACKAGES SUBSECTION (خدماتنا الفاخرة الباقات) -->
+        <div class="space-y-4 pt-4">
+          <div class="flex items-center justify-between border-b border-[#232734] pb-3">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <i class="bi bi-stars text-[#C4A77D]"></i>
+              <span>{{ langService.isRtl() ? 'خدماتنا الفاخرة والباقات' : 'Luxury Services & Packages' }}</span>
+            </h3>
+            <button (click)="setActiveTab('tours')" class="hidden sm:flex btn-outline-gold text-xs py-1.5 px-3.5 items-center gap-1.5">
+              <span>{{ langService.isRtl() ? 'عرض جميع الباقات والخدمات' : 'View All Packages & Services' }}</span>
+              <i class="bi bi-chevron-left" [class.rotate-180]="!langService.isRtl()"></i>
+            </button>
+          </div>
+
+          <!-- DESKTOP: Display 4 Luxury Services/Packages -->
+          <div class="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            @for (tour of tourPackages.slice(0, 4); track tour.id) {
+              <div class="luxury-card overflow-hidden flex flex-col justify-between group cursor-pointer border-[#262A36]" (click)="startTourBooking(tour)">
+                <div class="relative h-44 overflow-hidden">
+                  <img [src]="tour.image" [alt]="tour.nameAr" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div class="absolute top-2.5 left-2.5 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-bold text-[#C4A77D] border border-[#C4A77D]/40">
+                    {{ langService.isRtl() ? tour.durationAr : tour.durationEn }}
+                  </div>
+                </div>
+                <div class="p-4 space-y-2">
+                  <h4 class="text-sm font-bold text-white group-hover:text-[#C4A77D] transition-colors truncate">
+                    {{ langService.isRtl() ? tour.nameAr : tour.nameEn }}
+                  </h4>
+                  <div class="flex items-center justify-between text-xs pt-1 border-t border-[#1C1E26]">
+                    <span class="text-gray-400 text-[11px]">{{ langService.isRtl() ? 'سعر الباقة' : 'Package Price' }}</span>
+                    <span class="font-bold gold-text font-mono text-sm">{{ tour.price }} SAR</span>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+
+          <!-- MOBILE: Display 2 Luxury Services/Packages + Button -->
+          <div class="block sm:hidden space-y-4">
+            <div class="grid grid-cols-1 gap-4">
+              @for (tour of tourPackages.slice(0, 2); track tour.id) {
+                <div class="luxury-card overflow-hidden flex flex-col justify-between group cursor-pointer border-[#262A36]" (click)="startTourBooking(tour)">
+                  <div class="relative h-48 overflow-hidden">
+                    <img [src]="tour.image" [alt]="tour.nameAr" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div class="absolute top-3 left-3 bg-black/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-[#C4A77D] border border-[#C4A77D]/40">
+                      {{ langService.isRtl() ? tour.durationAr : tour.durationEn }}
+                    </div>
+                  </div>
+                  <div class="p-4 space-y-2">
+                    <h4 class="text-base font-bold text-white group-hover:text-[#C4A77D] transition-colors">
+                      {{ langService.isRtl() ? tour.nameAr : tour.nameEn }}
+                    </h4>
+                    <div class="flex items-center justify-between text-xs pt-2 border-t border-[#1C1E26]">
+                      <span class="text-gray-400">{{ langService.isRtl() ? 'سعر الباقة' : 'Package Price' }}</span>
+                      <span class="font-bold gold-text font-mono text-base">{{ tour.price }} SAR</span>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+
+            <!-- Mobile Button for All Packages & Services -->
+            <button (click)="setActiveTab('tours')" class="w-full btn-gold py-3 text-xs font-bold shadow-lg flex items-center justify-center gap-2">
+              <i class="bi bi-stars"></i>
+              <span>{{ langService.isRtl() ? 'عرض جميع الباقات والخدمات' : 'View All Packages & Services' }}</span>
+              <i class="bi bi-chevron-left" [class.rotate-180]="!langService.isRtl()"></i>
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- STATS COUNTER -->
+      <section class="max-w-7xl mx-auto px-4 lg:px-12">
+        <div class="luxury-card p-6 grid grid-cols-2 md:grid-cols-4 gap-6 border-[#242835] text-center">
+          <div class="space-y-1">
+            <span class="font-serif-luxury text-3xl sm:text-4xl font-bold gold-text">10K+</span>
+            <p class="text-xs text-gray-400">{{ langService.isRtl() ? 'عميل راضٍ وسعيد' : 'Happy Clients' }}</p>
+          </div>
+          <div class="space-y-1">
+            <span class="font-serif-luxury text-3xl sm:text-4xl font-bold gold-text">50+</span>
+            <p class="text-xs text-gray-400">{{ langService.isRtl() ? 'سيارة فاخرة بالأسطول' : 'Luxury Vehicles' }}</p>
+          </div>
+          <div class="space-y-1">
+            <span class="font-serif-luxury text-3xl sm:text-4xl font-bold gold-text">15+</span>
+            <p class="text-xs text-gray-400">{{ langService.isRtl() ? 'سنوات من الخبرة' : 'Years of Experience' }}</p>
+          </div>
+          <div class="space-y-1">
+            <span class="font-serif-luxury text-3xl sm:text-4xl font-bold gold-text">99%</span>
+            <p class="text-xs text-gray-400">{{ langService.isRtl() ? 'نسبة الالتزام بالمواعيد' : 'On-Time Rate' }}</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  }
+
+  <!-- ── 2. ROYAL FLEET VIEW (الأسطول الملكي) ── -->
+  @if (activeTab() === 'fleet') {
+    <main class="max-w-7xl mx-auto px-4 lg:px-12 py-10 space-y-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="section-tag"><i class="bi bi-crown text-[#C4A77D]"></i> {{ langService.isRtl() ? 'الأسطول الملكي الفاخر' : 'The Royal VIP Fleet' }}</span>
+          <h1 class="text-3xl lg:text-4xl font-serif-luxury font-bold text-white">
+            {{ langService.isRtl() ? 'اختر سيارتك المثالية للرحلة' : 'Select Your Premium Vehicle' }}
+          </h1>
+          <p class="text-xs text-gray-400 mt-1">
+            {{ langService.isRtl() ? 'أسطول متكامل من أحدث موديلات السيارات الفاخرة المجهزة بالكامل لضمان راحة مطلق.' : 'Curated fleet of latest luxury models fully equipped for maximum comfort.' }}
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 bg-[#12141C] p-1.5 rounded-xl border border-[#232734]">
+          <button (click)="setFleetFilter('all')" [className]="fleetCategoryFilter() === 'all' ? 'px-3 py-1.5 rounded-lg bg-[#C4A77D] text-black font-bold text-xs' : 'px-3 py-1.5 rounded-lg text-gray-300 hover:text-white text-xs'">
+            {{ langService.isRtl() ? 'الكل' : 'All' }}
+          </button>
+          <button (click)="setFleetFilter('sedan')" [className]="fleetCategoryFilter() === 'sedan' ? 'px-3 py-1.5 rounded-lg bg-[#C4A77D] text-black font-bold text-xs' : 'px-3 py-1.5 rounded-lg text-gray-300 hover:text-white text-xs'">
+            {{ langService.isRtl() ? 'سيدان مايباخ' : 'Sedan Maybach' }}
+          </button>
+          <button (click)="setFleetFilter('van')" [className]="fleetCategoryFilter() === 'van' ? 'px-3 py-1.5 rounded-lg bg-[#C4A77D] text-black font-bold text-xs' : 'px-3 py-1.5 rounded-lg text-gray-300 hover:text-white text-xs'">
+            {{ langService.isRtl() ? 'فان VIP' : 'Van Lounge' }}
+          </button>
+          <button (click)="setFleetFilter('suv')" [className]="fleetCategoryFilter() === 'suv' ? 'px-3 py-1.5 rounded-lg bg-[#C4A77D] text-black font-bold text-xs' : 'px-3 py-1.5 rounded-lg text-gray-300 hover:text-white text-xs'">
+            {{ langService.isRtl() ? 'دفع رباعي' : 'Luxury SUV' }}
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @for (car of getFilteredFleet(); track car.id) {
+          <div class="luxury-card overflow-hidden flex flex-col justify-between group border-[#262A36]">
+            <div>
+              <div class="relative h-56 overflow-hidden">
+                <img [src]="car.image" [alt]="car.name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div class="absolute top-3 right-3 bg-black/80 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold text-[#C4A77D] border border-[#C4A77D]/40">
+                  {{ car.category.toUpperCase() }}
+                </div>
+              </div>
+
+              <div class="p-5 space-y-4">
+                <div>
+                  <h3 class="text-lg font-bold text-white">{{ langService.isRtl() ? car.titleAr : car.titleEn }}</h3>
+                  <p class="text-xs text-gray-400 font-mono">{{ car.name }}</p>
+                </div>
+
+                <div class="flex items-center gap-4 text-xs text-gray-300 bg-[#0A0C10] p-2.5 rounded-xl border border-[#1A1C26]">
+                  <span class="flex items-center gap-1.5"><i class="bi bi-people-fill text-[#C4A77D]"></i> {{ car.passengers }} {{ langService.isRtl() ? 'ركاب' : 'Passengers' }}</span>
+                  <span class="flex items-center gap-1.5"><i class="bi bi-briefcase-fill text-[#C4A77D]"></i> {{ car.luggage }} {{ langService.isRtl() ? 'حقائب' : 'Luggage' }}</span>
+                </div>
+
+                <ul class="space-y-1.5 text-xs text-gray-300">
+                  @for (spec of (langService.isRtl() ? car.specsAr : car.specsEn); track spec) {
+                    <li class="flex items-center gap-2">
+                      <i class="bi bi-check-circle-fill text-[#C4A77D]"></i>
+                      <span>{{ spec }}</span>
+                    </li>
+                  }
+                </ul>
+              </div>
+            </div>
+
+            <div class="p-5 border-t border-[#1C1E26] bg-[#0C0E14] flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-gray-400 block">{{ langService.isRtl() ? 'يبدأ من' : 'Starts from' }}</span>
+                <span class="text-lg font-bold gold-text font-mono">{{ car.rateTransfer }} SAR</span>
+                <span class="text-[10px] text-gray-400 block">{{ langService.isRtl() ? '/ مشوار استقبال' : '/ Transfer' }}</span>
+              </div>
+              <button (click)="startBooking(car)" class="btn-gold text-xs py-2.5 px-4 font-bold">
+                {{ langService.isRtl() ? 'احجز هذه السيارة' : 'Book Vehicle' }}
+              </button>
+            </div>
+
+          </div>
+        }
+      </div>
+    </main>
+  }
+
+  <!-- ── 3. VIP PACKAGES & TOURS VIEW (الباقات والجولات) ── -->
+  @if (activeTab() === 'tours') {
+    <main class="max-w-7xl mx-auto px-4 lg:px-12 py-10 space-y-8">
+      <div>
+        <span class="section-tag"><i class="bi bi-stars text-[#C4A77D]"></i> {{ langService.isRtl() ? 'الباقات والجولات السياحية الملكية' : 'VIP Packages & Tours' }}</span>
+        <h1 class="text-3xl lg:text-4xl font-serif-luxury font-bold text-white">
+          {{ langService.isRtl() ? 'تجارب سياحية واستقبال VIP متكامل' : 'Curated Exclusive Tour Experiences' }}
+        </h1>
+        <p class="text-xs text-gray-400 mt-1">
+          {{ langService.isRtl() ? 'جولات مصممة خصيصاً لكبار الشخصيات للتمتع بأجمل معالم المملكة العربية السعودية.' : 'Handcrafted luxury tour packages across Saudi Arabia with dedicated private chauffeurs.' }}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        @for (tour of tourPackages; track tour.id) {
+          <div class="luxury-card overflow-hidden flex flex-col justify-between group border-[#262A36]">
+            <div>
+              <div class="relative h-64 overflow-hidden">
+                <img [src]="tour.image" [alt]="tour.nameAr" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div class="absolute top-3 left-3 bg-black/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-[#C4A77D] border border-[#C4A77D]/40 flex items-center gap-1">
+                  <i class="bi bi-clock"></i>
+                  <span>{{ langService.isRtl() ? tour.durationAr : tour.durationEn }}</span>
+                </div>
+              </div>
+
+              <div class="p-6 space-y-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">{{ langService.isRtl() ? tour.nameAr : tour.nameEn }}</h3>
+                  <p class="text-xs text-gray-300 mt-1 leading-relaxed">{{ langService.isRtl() ? tour.descriptionAr : tour.descriptionEn }}</p>
+                </div>
+
+                <div class="space-y-2">
+                  <h4 class="text-xs font-bold text-[#C4A77D] uppercase tracking-wider">{{ langService.isRtl() ? 'مميزات الباقة:' : 'Package Highlights:' }}</h4>
+                  <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-gray-300">
+                    @for (highlight of (langService.isRtl() ? tour.highlightsAr : tour.highlightsEn); track highlight) {
+                      <li class="flex items-center gap-2">
+                        <i class="bi bi-star-fill text-[#C4A77D]"></i>
+                        <span>{{ highlight }}</span>
+                      </li>
+                    }
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 border-t border-[#1C1E26] bg-[#0C0E14] flex items-center justify-between">
+              <div>
+                <span class="text-xs text-gray-400 block">{{ langService.isRtl() ? 'سعر الباقة كاملة' : 'Total Package Price' }}</span>
+                <span class="text-xl font-bold gold-text font-mono">{{ tour.price }} SAR</span>
+              </div>
+              <button (click)="startTourBooking(tour)" class="btn-gold text-xs py-2.5 px-6 font-bold">
+                {{ langService.isRtl() ? 'احجز الباقة الآن' : 'Book Package' }}
+              </button>
+            </div>
+
+          </div>
+        }
+      </div>
+    </main>
+  }
+
+  <!-- ── 4. ABOUT US VIEW (OFFICIAL PDF DATA) ── -->
+  @if (activeTab() === 'about') {
+    <main class="max-w-7xl mx-auto px-4 lg:px-12 py-10 space-y-12">
+      <div>
+        <span class="section-tag">{{ langService.isRtl() ? 'الملف التعريفي الرسمي' : 'Official Corporate Profile' }}</span>
+        <h1 class="text-3xl lg:text-5xl font-serif-luxury font-bold text-white">
+          {{ langService.isRtl() ? companyInfo.legalNameAr : companyInfo.legalNameEn }} <br />
+          <span class="gold-text">({{ companyInfo.brandAr }})</span>
+        </h1>
+        <p class="text-sm text-gray-300 mt-2 max-w-3xl leading-relaxed">
+          {{ langService.isRtl() ? 'مؤسسة سعودية مرخصة ومتخصصة في تقديم خدمة سيارات VIP مع سائقين محترفين داخل المدن وخارجها، نعمل تحت العلامة التجارية ROYALRIDE.' : 'Licensed Saudi enterprise specializing in luxury VIP chauffeur services across cities in the Kingdom of Saudi Arabia.' }}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="luxury-card p-6 space-y-3 border-[#C4A77D]/30">
+          <h3 class="text-xl font-bold text-[#C4A77D] flex items-center gap-2">
+            <i class="bi bi-eye-fill"></i>
+            <span>{{ langService.isRtl() ? 'رؤيتنا' : 'Our Vision' }}</span>
+          </h3>
+          <p class="text-xs text-gray-300 leading-relaxed">
+            أن نعيد تعريف مفهوم النقل الخاص في المملكة، من خلال تقديم تجربة تنقل استثنائية ترتكز على الجودة، الراحة، والموثوقية، لنكون الوجهة الأولى لكل من يبحث عن الخدمة الراقية بمستوى عالمي.
+          </p>
+        </div>
+
+        <div class="luxury-card p-6 space-y-3 border-[#C4A77D]/30">
+          <h3 class="text-xl font-bold text-[#C4A77D] flex items-center gap-2">
+            <i class="bi bi-bullseye"></i>
+            <span>{{ langService.isRtl() ? 'رسالتنا' : 'Our Mission' }}</span>
+          </h3>
+          <p class="text-xs text-gray-300 leading-relaxed">
+            نلتزم في ROYALRIDE بتقديم خدمات نقل تُعنى بالتفاصيل وتُلبي تطلعات العملاء الأكثر تميزاً، من خلال أسطول من السيارات الفاخرة، وسائقين محترفين، وتجربة متكاملة تعكس قيم الضيافة السعودية برؤية حديثة.
+          </p>
+        </div>
+      </div>
+    </main>
+  }
+
+  <!-- ── 5. CONTACT US VIEW ── -->
+  @if (activeTab() === 'contact') {
+    <main class="max-w-7xl mx-auto px-4 lg:px-12 py-12 space-y-12">
+      <div class="text-center space-y-3 max-w-3xl mx-auto">
+        <span class="section-tag mx-auto inline-flex items-center gap-1.5"><i class="bi bi-telephone-outbound text-[#C4A77D]"></i> {{ langService.isRtl() ? 'تواصل معنا' : 'Contact Us' }}</span>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-white leading-tight">
+          {{ langService.isRtl() ? 'للحجوزات والاستفسارات المباشرة' : 'Direct VIP Reservations & Support' }}
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-400">
+          {{ langService.isRtl() ? 'فريق ROYALRIDE في خدمتكم 24/7 للتنقلات الملكية واستقبال المطارات والجولات VIP في جميع مدن المملكة.' : 'ROYALRIDE concierge team available 24/7 for royal chauffeur transfers and airport meet & greet.' }}
+        </p>
+      </div>
+
+      <!-- BIG ICON LUXURY VIP CONTACT CARDS GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        
+        <!-- 📞 DIRECT PHONE CALL CARD -->
+        <div class="luxury-card p-8 flex flex-col items-center justify-between text-center space-y-6 border-[#C4A77D]/40 hover:border-[#C4A77D] transition-all group relative overflow-hidden bg-gradient-to-b from-[#12141F] to-[#0A0C12]">
+          <div class="space-y-4 flex flex-col items-center">
+            <!-- HUGE GOLD PHONE ICON BADGE -->
+            <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-gradient-to-br from-[#FFE8B6] via-[#C4A77D] to-[#8C7149] text-black text-4xl sm:text-5xl shadow-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shrink-0">
+              <i class="bi bi-telephone-outbound-fill drop-shadow"></i>
+            </div>
+
+            <div class="space-y-1">
+              <h3 class="text-lg font-bold text-white">{{ langService.isRtl() ? 'هاتف الحجوزات المباشر' : 'Direct Booking Phone' }}</h3>
+              <p class="text-xs text-gray-400">{{ langService.isRtl() ? 'خدمة ممتدة 24 ساعة يومياً' : '24/7 Executive Line' }}</p>
+            </div>
+
+            <div class="space-y-1 font-mono">
+              <p class="text-lg font-extrabold gold-text dir-ltr">+966 56 903 8515</p>
+              <p class="text-xs text-gray-400 dir-ltr">+966 54 004 7550</p>
+            </div>
+          </div>
+
+          <a [href]="'tel:' + companyInfo.phone1Raw" class="w-full btn-gold text-xs py-3 px-6 font-bold shadow-xl flex items-center justify-center gap-2 group-hover:brightness-110">
+            <i class="bi bi-telephone-fill"></i>
+            <span>{{ langService.isRtl() ? 'اتصال مباشر' : 'Direct Call' }}</span>
+          </a>
+        </div>
+
+        <!-- 📸 INSTAGRAM VIP CARD -->
+        <div class="luxury-card p-8 flex flex-col items-center justify-between text-center space-y-6 border-[#C4A77D]/40 hover:border-[#E1306C] transition-all group relative overflow-hidden bg-gradient-to-b from-[#16121D] to-[#0A0C12]">
+          <div class="space-y-4 flex flex-col items-center">
+            <!-- HUGE INSTAGRAM ICON BADGE -->
+            <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white text-4xl sm:text-5xl shadow-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shrink-0">
+              <i class="bi bi-instagram drop-shadow"></i>
+            </div>
+
+            <div class="space-y-1">
+              <h3 class="text-lg font-bold text-white">Instagram</h3>
+              <p class="text-xs text-gray-400">{{ langService.isRtl() ? 'تابع يوميات الأسطول وتغطياتنا' : 'Official VIP Media' }}</p>
+            </div>
+
+            <p class="font-mono text-base font-extrabold text-white dir-ltr">&#64;royal_ride97</p>
+          </div>
+
+          <a [href]="companyInfo.instagramUrl" target="_blank" rel="noopener noreferrer" class="w-full btn-outline-gold text-xs py-3 px-6 font-bold flex items-center justify-center gap-2 hover:bg-[#E1306C] hover:border-[#E1306C] hover:text-white transition-all">
+            <span>Instagram Page</span>
+            <i class="bi bi-arrow-left" [class.rotate-180]="!langService.isRtl()"></i>
+          </a>
+        </div>
+
+        <!-- 🎵 TIKTOK VIP CARD -->
+        <div class="luxury-card p-8 flex flex-col items-center justify-between text-center space-y-6 border-[#C4A77D]/40 hover:border-[#00f2fe] transition-all group relative overflow-hidden bg-gradient-to-b from-[#101720] to-[#0A0C12]">
+          <div class="space-y-4 flex flex-col items-center">
+            <!-- HUGE TIKTOK ICON BADGE -->
+            <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-gradient-to-br from-[#00f2fe] via-[#000000] to-[#fe2c55] border border-white/20 text-white text-4xl sm:text-5xl shadow-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shrink-0">
+              <i class="bi bi-tiktok drop-shadow"></i>
+            </div>
+
+            <div class="space-y-1">
+              <h3 class="text-lg font-bold text-white">TikTok</h3>
+              <p class="text-xs text-gray-400">{{ langService.isRtl() ? 'مقاطع وصور الأسطول والسيارات' : 'Official TikTok Channel' }}</p>
+            </div>
+
+            <p class="font-mono text-base font-extrabold text-white dir-ltr">&#64;royalride.</p>
+          </div>
+
+          <a [href]="companyInfo.tiktokUrl" target="_blank" rel="noopener noreferrer" class="w-full btn-outline-gold text-xs py-3 px-6 font-bold flex items-center justify-center gap-2 hover:bg-[#00f2fe] hover:border-[#00f2fe] hover:text-black transition-all">
+            <span>TikTok Channel</span>
+            <i class="bi bi-arrow-left" [class.rotate-180]="!langService.isRtl()"></i>
+          </a>
+        </div>
+
+      </div>
+    </main>
+  }
+
+  <!-- ── 6. USER PROFILE & MY BOOKINGS VIEW ── -->
+  @if (activeTab() === 'profile') {
+    <main class="max-w-7xl mx-auto px-4 lg:px-12 py-10 space-y-8">
+      @if (user().isLoggedIn) {
+        <div class="luxury-card p-6 border-[#C4A77D]/40 bg-gradient-to-r from-[#141620] via-[#0E1017] to-[#141620] flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#C4A77D] to-[#8C7149] text-black font-bold font-serif-luxury text-2xl flex items-center justify-center shadow-lg">
+              <i class="bi bi-crown-fill"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-3">
+                <h2 class="text-xl font-bold text-white">{{ user().name }}</h2>
+                <span class="px-2.5 py-0.5 rounded-full bg-[#C4A77D]/20 border border-[#C4A77D]/50 text-[#C4A77D] text-xs font-semibold">
+                  {{ user().tier }}
+                </span>
+              </div>
+              <p class="text-xs text-gray-400 font-mono mt-1">{{ user().phone }}</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button (click)="startBooking()" class="btn-gold text-xs py-2.5 px-5 font-bold">
+              + {{ langService.isRtl() ? 'حجز جديد' : 'New Booking' }}
+            </button>
+            <button (click)="logout()" class="px-4 py-2.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500/20 text-xs font-semibold">
+              {{ langService.isRtl() ? 'تسجيل الخروج' : 'Logout' }}
+            </button>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="bi bi-file-earmark-text-fill text-[#C4A77D]"></i>
+            <span>{{ langService.isRtl() ? 'سجل الحجوزات الفاخرة' : 'My VIP Booking History' }}</span>
+          </h3>
+
+          <div class="space-y-3">
+            @for (booking of user().bookings; track booking.id) {
+              <div class="luxury-card p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-[#242836]">
+                <div class="space-y-1">
+                  <div class="flex items-center gap-3">
+                    <span class="font-mono font-bold text-[#C4A77D] text-sm">{{ booking.ref }}</span>
+                    <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-[10px] font-bold flex items-center gap-1">
+                      <i class="bi bi-check-circle-fill"></i>
+                      <span>{{ langService.isRtl() ? 'حجز مؤكد ومفعل' : 'Confirmed & Paid' }}</span>
+                    </span>
+                  </div>
+                  <h4 class="text-sm font-bold text-white">{{ booking.carName }}</h4>
+                  <p class="text-xs text-gray-400 flex items-center gap-1">
+                    <i class="bi bi-geo-alt"></i>
+                    <span>{{ booking.pickup }} ➔ {{ booking.dropoff }}</span>
+                  </p>
+                  <p class="text-xs text-gray-400 flex items-center gap-2">
+                    <span><i class="bi bi-calendar3"></i> {{ booking.date }}</span>
+                    <span><i class="bi bi-clock"></i> {{ booking.time }}</span>
+                  </p>
+                </div>
+
+                <div class="flex flex-col md:items-end gap-2 shrink-0">
+                  <span class="text-lg font-bold gold-text font-mono">{{ booking.amount }} SAR</span>
+                  <button (click)="startBooking()" class="btn-outline-gold text-xs py-1.5 px-3">
+                    {{ langService.isRtl() ? 'تكرار الحجز' : 'Repeat Booking' }}
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      } @else {
+        <div class="luxury-card p-12 text-center space-y-4 max-w-md mx-auto my-12">
+          <i class="bi bi-shield-lock-fill text-4xl text-[#C4A77D]"></i>
+          <h2 class="text-xl font-bold text-white">{{ langService.isRtl() ? 'يرجى تسجيل الدخول' : 'Please Sign In' }}</h2>
+          <p class="text-xs text-gray-400">
+            {{ langService.isRtl() ? 'قم بتسجيل الدخول برقم الجوال لمتابعة حجوزاتك وإصدار الفواتير الضريبية.' : 'Log in with your mobile number to manage your bookings and tax invoices.' }}
+          </p>
+          <button (click)="openAuthModal()" class="btn-gold text-xs py-3 px-6 font-bold">
+            {{ langService.isRtl() ? 'تسجيل الدخول برقم الجوال' : 'Login via Mobile OTP' }}
+          </button>
+        </div>
+      }
+    </main>
+  }
+
+  <!-- ── 7. AUTH & OTP MODAL ── -->
+  @if (showAuthModal()) {
+    <div class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4">
+      <div class="luxury-card max-w-md w-full max-h-[90vh] flex flex-col p-6 space-y-5 border-[#C4A77D]/50 bg-[#0F1117] shadow-2xl relative rounded-2xl overflow-y-auto">
+        <button (click)="closeAuthModal()" class="absolute top-4 left-4 text-gray-400 hover:text-white text-lg w-7 h-7 rounded-full bg-[#181B26] flex items-center justify-center">✕</button>
+
+        @if (pendingCar() || pendingTour()) {
+          <div class="p-3 bg-[#C4A77D]/10 border border-[#C4A77D]/40 rounded-xl text-xs text-[#C4A77D] text-center font-bold flex items-center justify-center gap-2">
+            <i class="bi bi-shield-lock-fill text-base"></i>
+            <span>{{ langService.isRtl() ? 'يرجى تسجيل الدخول أو إنشاء حساب أولاً لمتابعة الحجز' : 'Please log in or create an account first to complete booking' }}</span>
+          </div>
+        }
+
+        @if (otpStep() === 'phone') {
+          <div class="text-center space-y-2">
+            <i class="bi bi-phone-vibrate text-4xl text-[#C4A77D] block"></i>
+            <h3 class="text-xl font-bold text-white">{{ langService.isRtl() ? 'تسجيل الدخول / إنشاء حساب' : 'Mobile OTP Authentication' }}</h3>
+            <p class="text-xs text-gray-400">{{ langService.isRtl() ? 'أدخل رقم جوالك لتأكيد الحساب وإدارة الحجوزات' : 'Enter your mobile number to access your account' }}</p>
+          </div>
+
+          <div class="space-y-4 text-xs">
+            <div class="space-y-1">
+              <label class="text-gray-300 font-semibold block">{{ langService.isRtl() ? 'الاسم الكريم' : 'Full Name' }}</label>
+              <input type="text" [(ngModel)]="inputAuthName" class="w-full bg-[#08090C] border border-[#262A36] rounded-xl px-4 py-3 text-white focus:border-[#C4A77D] focus:outline-none" />
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-gray-300 font-semibold block">{{ langService.isRtl() ? 'رقم الجوال السعودي' : 'Saudi Mobile Number' }}</label>
+              <input type="text" [(ngModel)]="inputAuthPhone" class="w-full bg-[#08090C] border border-[#262A36] rounded-xl px-4 py-3 text-white font-mono focus:border-[#C4A77D] focus:outline-none dir-ltr text-right" />
+            </div>
+
+            <button (click)="sendAuthOtp()" class="w-full btn-gold py-3 text-xs font-bold shadow-lg flex items-center justify-center gap-2">
+              <span>{{ langService.isRtl() ? 'إرسال رمز التحقق (OTP)' : 'Send Verification OTP' }}</span>
+              <i class="bi bi-arrow-left" [class.rotate-180]="!langService.isRtl()"></i>
+            </button>
+          </div>
+        } @else {
+          <div class="text-center space-y-2">
+            <i class="bi bi-key-fill text-4xl text-[#C4A77D] block"></i>
+            <h3 class="text-xl font-bold text-white">{{ langService.isRtl() ? 'تأكيد رمز التحقق (OTP)' : 'Enter 4-Digit OTP Code' }}</h3>
+            <p class="text-xs text-gray-400 dir-ltr">{{ inputAuthPhone }}</p>
+          </div>
+
+          <div class="space-y-6">
+            <div class="flex justify-center gap-3 dir-ltr">
+              <input type="text" maxlength="1" value="1" class="w-12 h-14 bg-[#08090C] border border-[#C4A77D] rounded-xl text-center text-xl font-bold text-[#C4A77D]" />
+              <input type="text" maxlength="1" value="2" class="w-12 h-14 bg-[#08090C] border border-[#C4A77D] rounded-xl text-center text-xl font-bold text-[#C4A77D]" />
+              <input type="text" maxlength="1" value="3" class="w-12 h-14 bg-[#08090C] border border-[#C4A77D] rounded-xl text-center text-xl font-bold text-[#C4A77D]" />
+              <input type="text" maxlength="1" value="4" class="w-12 h-14 bg-[#08090C] border border-[#C4A77D] rounded-xl text-center text-xl font-bold text-[#C4A77D]" />
+            </div>
+
+            <button (click)="confirmAuthOtp()" class="w-full btn-gold py-3 text-xs font-bold shadow-lg flex items-center justify-center gap-2">
+              <i class="bi bi-check-circle-fill"></i>
+              <span>{{ langService.isRtl() ? 'تأكيد وتفعيل الحساب وتكملة الحجز' : 'Verify & Proceed to Booking' }}</span>
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- ── 8. RESERVATION & CHECKOUT WIZARD MODAL ── -->
+  @if (isBookingModalOpen()) {
+    <div class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-2 sm:p-4">
+      <div class="luxury-card max-w-2xl w-full max-h-[86vh] sm:max-h-[88vh] flex flex-col border-[#C4A77D]/50 bg-[#0F1117] shadow-2xl relative rounded-2xl overflow-hidden">
+        
+        <!-- Sticky Fixed Modal Header -->
+        <div class="p-3.5 sm:px-6 sm:py-4 border-b border-[#232734] bg-[#0A0C12] shrink-0 space-y-2">
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-[9px] sm:text-[10px] text-[#C4A77D] font-bold uppercase tracking-wider block">ROYALRIDE VIP BOOKING</span>
+              <h3 class="text-base sm:text-lg font-bold text-white leading-tight">
+                {{ selectedCar() ? (langService.isRtl() ? selectedCar()?.titleAr : selectedCar()?.titleEn) : (selectedTour() ? selectedTour()?.nameAr : 'VIP Chauffeur') }}
+              </h3>
+            </div>
+            <button (click)="closeBookingModal()" class="w-8 h-8 rounded-full bg-[#181B26] hover:bg-[#252A3B] border border-[#2B3042] text-gray-300 hover:text-white flex items-center justify-center text-sm transition-colors shrink-0">✕</button>
+          </div>
+
+          <!-- Step Progress Bar -->
+          <div class="flex items-center justify-between text-[10px] sm:text-[11px] font-bold pt-1.5 border-t border-[#1C1F2E]">
+            <span [className]="bookingStep() >= 1 ? 'text-[#C4A77D]' : 'text-gray-500'">1. {{ langService.isRtl() ? 'الموقع والخارطة' : 'Route & Location' }}</span>
+            <span [className]="bookingStep() >= 2 ? 'text-[#C4A77D]' : 'text-gray-500'">2. {{ langService.isRtl() ? 'بيانات الراكب' : 'Passenger' }}</span>
+            <span [className]="bookingStep() >= 3 ? 'text-[#C4A77D]' : 'text-gray-500'">3. {{ langService.isRtl() ? 'الدفع' : 'Payment' }}</span>
+            <span [className]="bookingStep() >= 4 ? 'text-[#C4A77D]' : 'text-gray-500'">4. {{ langService.isRtl() ? 'الفاتورة ZATCA' : 'Invoice' }}</span>
+          </div>
+        </div>
+
+        <!-- Scrollable Modal Body -->
+        <div class="p-4 sm:p-6 overflow-y-auto flex-1 space-y-4 text-xs">
+
+          @if (bookingStep() === 1) {
+            <div class="space-y-4">
+
+              <!-- Service Type Selector inside Modal -->
+              <div class="flex items-center justify-center gap-2 bg-[#08090C] p-1.5 rounded-xl border border-[#232734]">
+                <button (click)="setServiceType('airport')" [className]="searchQuery.serviceType === 'airport' ? 'flex-1 py-2 px-3 rounded-lg bg-[#C4A77D] text-black font-bold flex items-center justify-center gap-1.5 shadow' : 'flex-1 py-2 px-3 rounded-lg text-gray-400 hover:text-white flex items-center justify-center gap-1.5'">
+                  <i class="bi bi-airplane-fill"></i>
+                  <span>{{ langService.isRtl() ? 'المطارات' : 'Airports' }}</span>
+                </button>
+                <button (click)="setServiceType('hourly')" [className]="searchQuery.serviceType === 'hourly' ? 'flex-1 py-2 px-3 rounded-lg bg-[#C4A77D] text-black font-bold flex items-center justify-center gap-1.5 shadow' : 'flex-1 py-2 px-3 rounded-lg text-gray-400 hover:text-white flex items-center justify-center gap-1.5'">
+                  <i class="bi bi-clock-history"></i>
+                  <span>{{ langService.isRtl() ? 'بالساعة' : 'Hourly' }}</span>
+                </button>
+                <button (click)="setServiceType('tours')" [className]="searchQuery.serviceType === 'tours' ? 'flex-1 py-2 px-3 rounded-lg bg-[#C4A77D] text-black font-bold flex items-center justify-center gap-1.5 shadow' : 'flex-1 py-2 px-3 rounded-lg text-gray-400 hover:text-white flex items-center justify-center gap-1.5'">
+                  <i class="bi bi-bank2"></i>
+                  <span>{{ langService.isRtl() ? 'جولات VIP' : 'VIP Tours' }}</span>
+                </button>
+              </div>
+
+              <!-- 🗺️ REAL INTERACTIVE GOOGLE MAPS WIDGET 🗺️ -->
+              <div class="relative w-full h-44 sm:h-52 rounded-2xl overflow-hidden border border-[#C4A77D]/60 bg-[#080A10] shadow-2xl group shrink-0">
+                
+                <!-- Live Google Maps Interactive Iframe -->
+                <iframe
+                  [src]="getGoogleMapEmbedUrl()"
+                  width="100%"
+                  height="100%"
+                  style="border:0; filter: contrast(1.1) saturate(1.15);"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title="Google Maps Live Location"
+                  class="w-full h-full rounded-2xl transition-all duration-300">
+                </iframe>
+
+                <!-- Live Route Distance & Duration Overlay Badge -->
+                <div class="absolute bottom-2.5 right-2.5 z-10 bg-[#08090C]/90 backdrop-blur-md border border-[#C4A77D]/60 px-3 py-1.5 rounded-xl text-xs text-gray-300 flex items-center gap-2.5 shadow-2xl">
+                  <div class="w-7 h-7 rounded-lg bg-[#C4A77D]/20 text-[#C4A77D] flex items-center justify-center font-bold text-xs">
+                    <i class="bi bi-geo-alt-fill"></i>
+                  </div>
+                  <div>
+                    <span class="text-[9px] text-gray-400 block font-semibold">{{ langService.isRtl() ? 'المسافة والوقت المباشر' : 'Live Distance & Time' }}</span>
+                    <span class="text-xs font-bold gold-text font-mono dir-ltr">{{ mapRouteKm() }} km • {{ mapRouteMins() }} mins</span>
+                  </div>
+                </div>
+
+                <!-- Google Maps Brand Tag -->
+                <div class="absolute top-2.5 left-2.5 z-10 bg-black/85 backdrop-blur-md px-2.5 py-1 rounded-full border border-[#C4A77D]/50 text-[#C4A77D] text-[10px] font-bold flex items-center gap-1 shadow-lg">
+                  <i class="bi bi-google"></i>
+                  <span>{{ langService.isRtl() ? 'خرائط Google Maps التفاعلية' : 'Interactive Google Maps' }}</span>
+                </div>
+              </div>
+
+              <!-- Locations Pickers with Swap -->
+              <div class="space-y-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 relative">
+                  <div class="space-y-1">
+                    <label class="text-gray-300 font-semibold flex items-center justify-between">
+                      <span><i class="bi bi-geo-alt-fill text-emerald-400 ml-1"></i> {{ langService.isRtl() ? 'موقع الانطلاق (من)' : 'Pickup Location' }}</span>
+                    </label>
+                    <input type="text" [(ngModel)]="searchQuery.pickupCity" (change)="recalculateRoute()" class="w-full bg-[#08090C] border border-[#262A36] rounded-xl px-3 py-2.5 text-white focus:border-[#C4A77D] focus:outline-none" />
+                  </div>
+
+                  <div class="space-y-1">
+                    <label class="text-gray-300 font-semibold flex items-center justify-between">
+                      <span><i class="bi bi-flag-fill text-[#C4A77D] ml-1"></i> {{ langService.isRtl() ? 'وجهة الوصول (إلى)' : 'Dropoff Location' }}</span>
+                    </label>
+                    <input type="text" [(ngModel)]="searchQuery.dropoffCity" (change)="recalculateRoute()" class="w-full bg-[#08090C] border border-[#262A36] rounded-xl px-3 py-2.5 text-white focus:border-[#C4A77D] focus:outline-none" />
+                  </div>
+                </div>
+
+                <!-- Popular Saudi Locations Quick Pick Chips -->
+                <div class="flex flex-wrap items-center gap-1.5 text-[11px]">
+                  <span class="text-gray-400 font-semibold"><i class="bi bi-pin-map text-[#C4A77D]"></i> اختر موقع من الخارطة:</span>
+                  @for (loc of popularLocations; track loc.nameAr) {
+                    <button (click)="selectPickupLocation(loc)" class="px-2 py-0.5 rounded-lg bg-[#141620] hover:bg-[#C4A77D]/20 border border-[#242836] text-gray-300 hover:text-white transition-colors">
+                      {{ loc.nameAr.split(' - ')[0] }}
+                    </button>
+                  }
+                </div>
+              </div>
+
+              <!-- Dynamic Service Specific Inputs -->
+              @if (searchQuery.serviceType === 'airport') {
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 rounded-xl bg-[#08090C] border border-[#232734]">
+                  <div class="space-y-1">
+                    <label class="text-gray-300 font-semibold block"><i class="bi bi-airplane text-[#C4A77D] ml-1"></i> {{ langService.isRtl() ? 'رقم الرحلة الجوية' : 'Flight Number' }}</label>
+                    <input type="text" [(ngModel)]="searchQuery.flightNumber" placeholder="SV-1024" class="w-full bg-[#0F1117] border border-[#262A36] rounded-xl px-3 py-2 text-white font-mono focus:border-[#C4A77D] focus:outline-none" />
+                  </div>
+
+                  <div class="space-y-1">
+                    <label class="text-gray-300 font-semibold block"><i class="bi bi-building text-[#C4A77D] ml-1"></i> {{ langService.isRtl() ? 'صالة الوصول / التيرمينال' : 'Terminal' }}</label>
+                    <input type="text" [(ngModel)]="searchQuery.terminal" placeholder="صالة 1 الفرسان VIP" class="w-full bg-[#0F1117] border border-[#262A36] rounded-xl px-3 py-2 text-white focus:border-[#C4A77D] focus:outline-none" />
+                  </div>
+
+                  <div class="sm:col-span-2 pt-1 flex items-center justify-between border-t border-[#1C202E]">
+                    <span class="text-gray-300 font-semibold flex items-center gap-1.5"><i class="bi bi-person-check-fill text-[#C4A77D]"></i> {{ langService.isRtl() ? 'استقبال باللوحة في صالة الوصول (+150 SAR)' : 'VIP Meet & Greet Service' }}</span>
+                    <input type="checkbox" [(ngModel)]="searchQuery.meetAndGreet" class="w-4 h-4 accent-[#C4A77D] rounded cursor-pointer" />
+                  </div>
+                </div>
+              } @else if (searchQuery.serviceType === 'hourly') {
+                <div class="p-3.5 rounded-xl bg-[#08090C] border border-[#232734] space-y-2.5">
+                  <label class="text-gray-300 font-semibold block flex items-center gap-1.5"><i class="bi bi-hourglass-split text-[#C4A77D]"></i> {{ langService.isRtl() ? 'اختر عدد ساعات بقاء السائق والسيارة معكم:' : 'Select Chauffeur Hours Duration:' }}</label>
+                  
+                  <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    <button (click)="searchQuery.hourlyDuration = 4" [className]="searchQuery.hourlyDuration === 4 ? 'p-2.5 rounded-xl border border-[#C4A77D] bg-[#181B26] text-white font-bold text-center' : 'p-2.5 rounded-xl border border-[#262A36] bg-[#0A0C10] text-gray-400 text-center'">
+                      4 {{ langService.isRtl() ? 'ساعات' : 'Hours' }}
+                    </button>
+                    <button (click)="searchQuery.hourlyDuration = 8" [className]="searchQuery.hourlyDuration === 8 ? 'p-2.5 rounded-xl border border-[#C4A77D] bg-[#181B26] text-white font-bold text-center' : 'p-2.5 rounded-xl border border-[#262A36] bg-[#0A0C10] text-gray-400 text-center'">
+                      8 {{ langService.isRtl() ? 'ساعات' : 'Hours' }}
+                    </button>
+                    <button (click)="searchQuery.hourlyDuration = 12" [className]="searchQuery.hourlyDuration === 12 ? 'p-2.5 rounded-xl border border-[#C4A77D] bg-[#181B26] text-white font-bold text-center' : 'p-2.5 rounded-xl border border-[#262A36] bg-[#0A0C10] text-gray-400 text-center'">
+                      12 {{ langService.isRtl() ? 'ساعة (يوم)' : 'Hours' }}
+                    </button>
+                    <button (click)="searchQuery.hourlyDuration = 24" [className]="searchQuery.hourlyDuration === 24 ? 'p-2.5 rounded-xl border border-[#C4A77D] bg-[#181B26] text-white font-bold text-center' : 'p-2.5 rounded-xl border border-[#262A36] bg-[#0A0C10] text-gray-400 text-center'">
+                      24 {{ langService.isRtl() ? 'ساعة (يومان)' : 'Hours' }}
+                    </button>
+                  </div>
+                </div>
+              } @else {
+                <div class="p-3.5 rounded-xl bg-[#08090C] border border-[#232734] space-y-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-gray-300 font-semibold flex items-center gap-1.5"><i class="bi bi-person-badge-fill text-[#C4A77D]"></i> {{ langService.isRtl() ? 'إضافة مرشد سياحي خاص مرخص (+350 SAR)' : 'Include Licensed VIP Private Guide' }}</span>
+                    <input type="checkbox" [(ngModel)]="searchQuery.includeGuide" class="w-4 h-4 accent-[#C4A77D] rounded cursor-pointer" />
+                  </div>
+                </div>
+              }
+
+              <button (click)="nextBookingStep()" class="w-full btn-gold py-3 text-xs font-bold shadow-lg flex items-center justify-center gap-2">
+                <span>{{ langService.isRtl() ? 'المتابعة لإدخال بيانات الراكب' : 'Continue to Passenger Details' }}</span>
+                <i class="bi bi-arrow-left" [class.rotate-180]="!langService.isRtl()"></i>
+              </button>
+            </div>
+          }
+
+          @if (bookingStep() === 2) {
+            <div class="space-y-4 text-xs">
+              <div class="space-y-1">
+                <label class="text-gray-300 font-semibold block">{{ langService.isRtl() ? 'اسم الراكب الرئيسي' : 'Passenger Full Name' }}</label>
+                <input type="text" [(ngModel)]="passengerName" placeholder="سعادة / ..." class="w-full bg-[#08090C] border border-[#262A36] rounded-xl px-4 py-2.5 text-white focus:border-[#C4A77D] focus:outline-none" />
+              </div>
+
+              <div class="space-y-1">
+                <label class="text-gray-300 font-semibold block">{{ langService.isRtl() ? 'رقم جوال للتواصل (WhatsApp)' : 'Mobile Number' }}</label>
+                <input type="text" [(ngModel)]="passengerPhone" placeholder="+966 50 123 4567" class="w-full bg-[#08090C] border border-[#262A36] rounded-xl px-4 py-2.5 text-white font-mono focus:border-[#C4A77D] focus:outline-none dir-ltr text-right" />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="space-y-1">
+                  <label class="text-gray-300 font-semibold block">{{ langService.isRtl() ? 'لغة السائق المفضلة' : 'Chauffeur Language' }}</label>
+                  <select class="w-full bg-[#08090C] border border-[#262A36] rounded-xl px-4 py-2.5 text-white focus:border-[#C4A77D] focus:outline-none">
+                    <option>{{ langService.isRtl() ? 'العربية' : 'Arabic' }}</option>
+                    <option>{{ langService.isRtl() ? 'الإنجليزية' : 'English' }}</option>
+                  </select>
+                </div>
+                <div class="space-y-1">
+                  <label class="text-gray-300 font-semibold block">{{ langService.isRtl() ? 'ضيافة القهوة والماء' : 'Hospitality & Refreshments' }}</label>
+                  <select class="w-full bg-[#08090C] border border-[#262A36] rounded-xl px-4 py-2.5 text-white focus:border-[#C4A77D] focus:outline-none">
+                    <option>{{ langService.isRtl() ? 'قهوة عربية + مياه فاخرة + تمور' : 'Arabic Coffee & Zamzam' }}</option>
+                    <option>{{ langService.isRtl() ? 'مياه فاخرة وعصائر طازجة' : 'Juices & Premium Mineral Water' }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="space-y-1">
+                <label class="text-gray-300 font-semibold block">{{ langService.isRtl() ? 'ملاحظات وضيافة خاصة' : 'Special Requests & Refreshments' }}</label>
+                <textarea [(ngModel)]="chauffeurNotes" rows="2" class="w-full bg-[#08090C] border border-[#262A36] rounded-xl px-4 py-2 text-white focus:border-[#C4A77D] focus:outline-none"></textarea>
+              </div>
+
+              <div class="flex items-center justify-between pt-2">
+                <button (click)="prevBookingStep()" class="btn-outline-gold text-xs py-2.5 px-4 font-bold flex items-center gap-1">
+                  <i class="bi bi-chevron-right" [class.rotate-180]="!langService.isRtl()"></i>
+                  <span>{{ langService.isRtl() ? 'السابق' : 'Back' }}</span>
+                </button>
+                <button (click)="nextBookingStep()" class="btn-gold text-xs py-2.5 px-6 font-bold flex items-center gap-2">
+                  <span>{{ langService.isRtl() ? 'المتابعة لخطوة الدفع الإلكتروني' : 'Proceed to Payment' }}</span>
+                  <i class="bi bi-arrow-left" [class.rotate-180]="!langService.isRtl()"></i>
+                </button>
+              </div>
+            </div>
+          }
+
+          @if (bookingStep() === 3) {
+            <div class="space-y-6 text-xs">
+              <div class="p-4 rounded-xl bg-[#08090C] border border-[#232734] space-y-2.5">
+                <div class="border-b border-[#1F2330] pb-2 text-[#C4A77D] font-bold">
+                  {{ calculateTotalPrice().breakdown }}
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-400">{{ langService.isRtl() ? 'المبلغ الأساسي للخدمة:' : 'Base Rate:' }}</span>
+                  <span class="font-mono text-white">{{ calculateTotalPrice().base }} SAR</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-400">{{ langService.isRtl() ? 'ضريبة القيمة المضافة 15% ZATCA:' : 'VAT (15% ZATCA):' }}</span>
+                  <span class="font-mono text-white">{{ calculateTotalPrice().tax }} SAR</span>
+                </div>
+                <div class="flex justify-between border-t border-[#1F2330] pt-2 font-bold text-sm">
+                  <span class="text-[#C4A77D]">{{ langService.isRtl() ? 'الإجمالي الكلي المستحق:' : 'Grand Total:' }}</span>
+                  <span class="gold-text font-mono text-base">{{ calculateTotalPrice().total }} SAR</span>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+                <label class="text-gray-300 font-bold block">{{ langService.isRtl() ? 'اختر وسيلة الدفع الإلكتروني:' : 'Select Payment Method:' }}</label>
+                
+                <div class="grid grid-cols-2 gap-3">
+                  <button (click)="selectedPaymentMethod = 'applepay'" [className]="selectedPaymentMethod === 'applepay' ? 'p-3 rounded-xl border border-[#C4A77D] bg-[#161824] text-white font-bold flex items-center justify-center gap-2' : 'p-3 rounded-xl border border-[#262A36] bg-[#08090C] text-gray-300 flex items-center justify-center gap-2'">
+                    <i class="bi bi-apple text-base"></i>
+                    <span>Apple Pay</span>
+                  </button>
+                  <button (click)="selectedPaymentMethod = 'mada'" [className]="selectedPaymentMethod === 'mada' ? 'p-3 rounded-xl border border-[#C4A77D] bg-[#161824] text-white font-bold flex items-center justify-center gap-2' : 'p-3 rounded-xl border border-[#262A36] bg-[#08090C] text-gray-300 flex items-center justify-center gap-2'">
+                    <i class="bi bi-credit-card-2-front-fill text-base text-[#C4A77D]"></i>
+                    <span>مدى Mada</span>
+                  </button>
+                </div>
+              </div>
+
+              <button (click)="confirmPayment()" class="w-full btn-gold py-3.5 text-sm font-bold shadow-xl flex items-center justify-center gap-2">
+                <i class="bi bi-lock-fill"></i>
+                <span>{{ langService.isRtl() ? 'إتمام الحجز وتأكيد الدفع' : 'Complete Reservation & Pay' }}</span>
+              </button>
+            </div>
+          }
+
+          @if (bookingStep() === 4) {
+            <div class="space-y-4">
+              <!-- Streamlined Minimal ZATCA Tax Invoice Container -->
+              <div #invoiceContainer class="p-4 sm:p-5 rounded-2xl bg-[#0A0C12] border border-[#C4A77D]/40 space-y-3.5 text-xs text-[#F3F3F4] shadow-2xl" id="zatca-invoice">
+                
+                <!-- Invoice Top Header -->
+                <div class="flex items-center justify-between border-b border-[#202432] pb-3">
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-xl bg-[#C4A77D]/20 border border-[#C4A77D]/50 flex items-center justify-center text-[#C4A77D] text-sm shadow">
+                      <i class="bi bi-crown-fill"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-extrabold text-white text-base tracking-wider leading-none">ROYALRIDE</h4>
+                      <span class="text-[9px] text-[#C4A77D] font-medium block pt-0.5">{{ langService.isRtl() ? 'فاتورة ضريبية مبسطة' : 'Simplified Tax Invoice' }}</span>
+                    </div>
+                  </div>
+
+                  <div class="text-left font-mono">
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-bold text-[10px]">
+                      <i class="bi bi-check-circle-fill"></i>
+                      <span>{{ langService.isRtl() ? 'مدفوعة' : 'PAID' }}</span>
+                    </span>
+                    <div class="text-[10px] text-gray-400 mt-1 dir-ltr text-left">
+                      <span class="font-bold text-white block">{{ currentBookingRef() }}</span>
+                      <span>{{ currentInvoiceDate() }}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Customer & Service Overview Grid -->
+                <div class="grid grid-cols-2 gap-3 bg-[#121520] p-3 rounded-xl border border-[#202432] text-[11px]">
+                  <div class="space-y-0.5">
+                    <span class="text-gray-400 text-[10px] block">{{ langService.isRtl() ? 'العميل:' : 'Customer:' }}</span>
+                    <strong class="text-white font-semibold block truncate">{{ passengerName || user().name }}</strong>
+                    <span class="text-gray-400 text-[10px] font-mono dir-ltr block text-right">{{ passengerPhone || user().phone }}</span>
+                  </div>
+
+                  <div class="space-y-0.5">
+                    <span class="text-gray-400 text-[10px] block">{{ langService.isRtl() ? 'السيارة والمسار:' : 'Vehicle & Route:' }}</span>
+                    <strong class="text-[#C4A77D] font-semibold block truncate">
+                      {{ selectedCar() ? (langService.isRtl() ? selectedCar()?.titleAr : selectedCar()?.name) : (selectedTour() ? selectedTour()?.nameAr : 'سيارة ليموزين VIP') }}
+                    </strong>
+                    <span class="text-gray-300 text-[10px] block truncate">
+                      {{ searchQuery.pickupCity.split(' - ')[0] }} ↔ {{ searchQuery.dropoffCity.split(' - ')[0] }}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Clean Itemized Table -->
+                <div class="border border-[#202432] rounded-xl overflow-hidden text-[11px]">
+                  <table class="w-full text-right">
+                    <thead class="bg-[#151824] text-[#C4A77D] font-bold border-b border-[#202432]">
+                      <tr>
+                        <th class="p-2.5">{{ langService.isRtl() ? 'بيان الخدمة' : 'Service Description' }}</th>
+                        <th class="p-2.5 text-center">{{ langService.isRtl() ? 'الأساسي' : 'Subtotal' }}</th>
+                        <th class="p-2.5 text-center">{{ langService.isRtl() ? 'الضريبة (15%)' : 'VAT (15%)' }}</th>
+                        <th class="p-2.5 text-left">{{ langService.isRtl() ? 'الإجمالي' : 'Total' }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="bg-[#0D0F18]">
+                        <td class="p-2.5">
+                          <span class="font-semibold text-white block">{{ calculateTotalPrice().breakdown }}</span>
+                          @if (searchQuery.flightNumber) {
+                            <span class="text-[9px] text-gray-400 font-mono block pt-0.5">رحلة: {{ searchQuery.flightNumber }}</span>
+                          }
+                        </td>
+                        <td class="p-2.5 text-center font-mono text-gray-300">{{ calculateTotalPrice().base }} SAR</td>
+                        <td class="p-2.5 text-center font-mono text-gray-300">{{ calculateTotalPrice().tax }} SAR</td>
+                        <td class="p-2.5 text-left font-mono font-extrabold text-[#C4A77D] text-sm">{{ calculateTotalPrice().total }} SAR</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- ZATCA QR & Verification Footer -->
+                <div class="flex items-center justify-between bg-[#121520] p-3 rounded-xl border border-[#202432] gap-3">
+                  <div class="space-y-1">
+                    <p class="text-[11px] text-white font-bold flex items-center gap-1.5">
+                      <i class="bi bi-qr-code text-[#C4A77D]"></i>
+                      <span>{{ langService.isRtl() ? 'رمز ZATCA QR المعتمد' : 'ZATCA Verified QR Code' }}</span>
+                    </p>
+                    <p class="text-[10px] text-emerald-400 font-bold flex items-center gap-1">
+                      <i class="bi bi-check2-circle"></i>
+                      <span>{{ langService.isRtl() ? 'تم الدفع الإلكتروني بنجاح (Apple Pay)' : 'Paid Online via Apple Pay' }}</span>
+                    </p>
+                    <p class="text-[9px] text-gray-500 font-mono">الرقم الضريبي: {{ companyInfo.taxId }}</p>
+                  </div>
+
+                  <!-- High-Precision Crisp ZATCA SVG QR Code -->
+                  <div class="w-16 h-16 bg-white p-1 rounded-lg border border-[#C4A77D]/60 flex items-center justify-center shrink-0 shadow">
+                    <svg class="w-full h-full text-black fill-current" viewBox="0 0 29 29" shape-rendering="crispEdges">
+                      <rect width="29" height="29" fill="white"/>
+                      
+                      <!-- Top-Left Finder Pattern -->
+                      <rect x="2" y="2" width="7" height="7" fill="black"/>
+                      <rect x="3" y="3" width="5" height="5" fill="white"/>
+                      <rect x="4" y="4" width="3" height="3" fill="black"/>
+
+                      <!-- Top-Right Finder Pattern -->
+                      <rect x="20" y="2" width="7" height="7" fill="black"/>
+                      <rect x="21" y="3" width="5" height="5" fill="white"/>
+                      <rect x="22" y="4" width="3" height="3" fill="black"/>
+
+                      <!-- Bottom-Left Finder Pattern -->
+                      <rect x="2" y="20" width="7" height="7" fill="black"/>
+                      <rect x="3" y="21" width="5" height="5" fill="white"/>
+                      <rect x="4" y="22" width="3" height="3" fill="black"/>
+
+                      <!-- Timing & Alignment Patterns -->
+                      <rect x="10" y="4" width="1" height="1" fill="black"/>
+                      <rect x="12" y="4" width="1" height="1" fill="black"/>
+                      <rect x="14" y="4" width="1" height="1" fill="black"/>
+                      <rect x="16" y="4" width="1" height="1" fill="black"/>
+                      
+                      <rect x="4" y="10" width="1" height="1" fill="black"/>
+                      <rect x="4" y="12" width="1" height="1" fill="black"/>
+                      <rect x="4" y="14" width="1" height="1" fill="black"/>
+                      <rect x="4" y="16" width="1" height="1" fill="black"/>
+
+                      <!-- Alignment Sub-block -->
+                      <rect x="20" y="20" width="5" height="5" fill="black"/>
+                      <rect x="21" y="21" width="3" height="3" fill="white"/>
+                      <rect x="22" y="22" width="1" height="1" fill="black"/>
+
+                      <!-- Data Modules Grid -->
+                      <rect x="10" y="2" width="2" height="1" fill="black"/>
+                      <rect x="13" y="2" width="1" height="2" fill="black"/>
+                      <rect x="15" y="2" width="3" height="1" fill="black"/>
+                      <rect x="11" y="6" width="2" height="2" fill="black"/>
+                      <rect x="15" y="6" width="2" height="1" fill="black"/>
+                      <rect x="10" y="9" width="3" height="1" fill="black"/>
+                      <rect x="14" y="9" width="2" height="2" fill="black"/>
+                      <rect x="17" y="9" width="1" height="3" fill="black"/>
+                      <rect x="10" y="11" width="1" height="3" fill="black"/>
+                      <rect x="12" y="12" width="4" height="1" fill="black"/>
+                      <rect x="17" y="13" width="2" height="2" fill="black"/>
+                      <rect x="10" y="15" width="3" height="1" fill="black"/>
+                      <rect x="14" y="15" width="2" height="3" fill="black"/>
+                      <rect x="11" y="17" width="2" height="2" fill="black"/>
+                      <rect x="17" y="16" width="1" height="3" fill="black"/>
+                      <rect x="10" y="20" width="2" height="2" fill="black"/>
+                      <rect x="13" y="20" width="2" height="1" fill="black"/>
+                      <rect x="16" y="20" width="3" height="1" fill="black"/>
+                      <rect x="10" y="23" width="3" height="1" fill="black"/>
+                      <rect x="14" y="23" width="2" height="2" fill="black"/>
+                      <rect x="17" y="23" width="2" height="1" fill="black"/>
+                      <rect x="10" y="25" width="1" height="2" fill="black"/>
+                      <rect x="12" y="26" width="3" height="1" fill="black"/>
+                      <rect x="16" y="25" width="3" height="2" fill="black"/>
+                    </svg>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-1">
+                <button (click)="downloadInvoicePng()" [disabled]="isDownloadingPng()" class="w-full sm:w-auto btn-gold py-2.5 px-6 text-xs font-bold shadow-xl flex items-center justify-center gap-2">
+                  <i class="bi bi-download"></i>
+                  <span>{{ isDownloadingPng() ? (langService.isRtl() ? 'جاري تجهيز الصورة...' : 'Generating Image...') : (langService.isRtl() ? 'تنزيل الفاتورة كصورة PNG' : 'Download Invoice PNG') }}</span>
+                </button>
+
+                <button (click)="closeBookingModal()" class="w-full sm:w-auto btn-outline-gold py-2.5 px-6 text-xs font-bold">
+                  {{ langService.isRtl() ? 'إغلاق ومتابعة الحجوزات' : 'Close & View Bookings' }}
+                </button>
+              </div>
+
+            </div>
+          }            <rect x="4" y="12" width="1" height="1" fill="black"/>
+                      <rect x="4" y="14" width="1" height="1" fill="black"/>
+                      <rect x="4" y="16" width="1" height="1" fill="black"/>
+
+                      <!-- Alignment Sub-block -->
+                      <rect x="20" y="20" width="5" height="5" fill="black"/>
+                      <rect x="21" y="21" width="3" height="3" fill="white"/>
+                      <rect x="22" y="22" width="1" height="1" fill="black"/>
+
+                      <!-- Data Modules Grid -->
+                      <rect x="10" y="2" width="2" height="1" fill="black"/>
+                      <rect x="13" y="2" width="1" height="2" fill="black"/>
+                      <rect x="15" y="2" width="3" height="1" fill="black"/>
+                      <rect x="11" y="6" width="2" height="2" fill="black"/>
+                      <rect x="15" y="6" width="2" height="1" fill="black"/>
+                      <rect x="10" y="9" width="3" height="1" fill="black"/>
+                      <rect x="14" y="9" width="2" height="2" fill="black"/>
+                      <rect x="17" y="9" width="1" height="3" fill="black"/>
+                      <rect x="10" y="11" width="1" height="3" fill="black"/>
+                      <rect x="12" y="12" width="4" height="1" fill="black"/>
+                      <rect x="17" y="13" width="2" height="2" fill="black"/>
+                      <rect x="10" y="15" width="3" height="1" fill="black"/>
+                      <rect x="14" y="15" width="2" height="3" fill="black"/>
+                      <rect x="11" y="17" width="2" height="2" fill="black"/>
+                      <rect x="17" y="16" width="1" height="3" fill="black"/>
+                      <rect x="10" y="20" width="2" height="2" fill="black"/>
+                      <rect x="13" y="20" width="2" height="1" fill="black"/>
+                      <rect x="16" y="20" width="3" height="1" fill="black"/>
+                      <rect x="10" y="23" width="3" height="1" fill="black"/>
+                      <rect x="14" y="23" width="2" height="2" fill="black"/>
+                      <rect x="17" y="23" width="2" height="1" fill="black"/>
+                      <rect x="10" y="25" width="1" height="2" fill="black"/>
+                      <rect x="12" y="26" width="3" height="1" fill="black"/>
+                      <rect x="16" y="25" width="3" height="2" fill="black"/>
+                    </svg>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Action Buttons -->
+              <!-- Action Buttons -->
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-1">
+                <button (click)="downloadInvoicePng()" [disabled]="isDownloadingPng()" class="w-full sm:w-auto btn-gold py-2.5 px-6 text-xs font-bold shadow-xl flex items-center justify-center gap-2">
+                  <i class="bi bi-download"></i>
+                  <span>{{ isDownloadingPng() ? (langService.isRtl() ? 'جاري تجهيز الصورة...' : 'Generating Image...') : (langService.isRtl() ? 'تنزيل الفاتورة كصورة PNG' : 'Download Invoice Image (PNG)') }}</span>
+                </button>
+
+                <button (click)="closeBookingModal()" class="w-full sm:w-auto btn-outline-gold py-2.5 px-6 text-xs font-bold">
+                  {{ langService.isRtl() ? 'إغلاق ومتابعة الحجوزات' : 'Close & Go to My Bookings' }}
+                </button>
+              </div>
+
+            </div>
+          }
+
+        </div>
+
+      </div>
+    </div>
+  }
+
+  <!-- ── FOOTER (OFFICIAL PDF COMPANY INFO) ── -->
+  <footer class="border-t border-[#1A1C24] bg-[#050608] py-8 px-4 lg:px-12 text-xs text-gray-400 mt-20">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="space-y-1 text-center md:text-right">
+        <p>© 2026 {{ companyInfo.legalNameAr }} - {{ companyInfo.brandAr }}. جميع الحقوق محفوظة.</p>
+        <p class="text-[11px] text-gray-500">جدة • مكة المكرمة • المدينة المنورة • العلا • الرياض • أبها وعسير</p>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs">
+        <span class="font-mono text-[#C4A77D] font-bold">ZATCA VAT: {{ companyInfo.taxId }}</span>
+        <a [href]="companyInfo.instagramUrl" target="_blank" rel="noopener noreferrer" class="hover:text-white flex items-center gap-1">
+          <i class="bi bi-instagram"></i> Instagram
+        </a>
+        <a [href]="companyInfo.tiktokUrl" target="_blank" rel="noopener noreferrer" class="hover:text-white flex items-center gap-1">
+          <i class="bi bi-tiktok"></i> TikTok
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</div>
