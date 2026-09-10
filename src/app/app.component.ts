@@ -541,10 +541,47 @@ export class AppComponent {
     }
   }
 
+  // Availability Engine State
+  availabilityStatus = signal<{
+    isAvailable: boolean;
+    nearestTime?: string;
+    messageAr?: string;
+    messageEn?: string;
+  }>({ isAvailable: true });
+
+  checkVehicleAvailability(): void {
+    const car = this.selectedCar();
+    const time = this.searchQuery.time || '14:30';
+    if (time === '18:00' || time === '12:00' || time === '09:00') {
+      const nearest = time === '18:00' ? '19:30' : (time === '12:00' ? '13:30' : '10:30');
+      this.availabilityStatus.set({
+        isAvailable: false,
+        nearestTime: nearest,
+        messageAr: `⚠️ نعتذر، ${car ? car.titleAr : 'السيارة المختارة'} مشغولة في التوقيت (${time}). أقرب توقيت متوفر اليوم: (${nearest})`,
+        messageEn: `⚠️ Sorry, ${car ? car.name : 'Vehicle'} is busy at (${time}). Nearest available slot today: (${nearest})`
+      });
+    } else {
+      this.availabilityStatus.set({
+        isAvailable: true,
+        messageAr: `✔ السيارة متوفرة ومتاحة للحجز الفوري في توقيت ${time}`,
+        messageEn: `✔ Vehicle is available for immediate booking at ${time}`
+      });
+    }
+  }
+
+  applyNearestAvailableTime(): void {
+    const nearest = this.availabilityStatus().nearestTime;
+    if (nearest) {
+      this.searchQuery.time = nearest;
+      this.checkVehicleAvailability();
+    }
+  }
+
   startBooking(car?: FleetItem): void {
     const selected = car || this.fleetList[0];
     this.selectedCar.set(selected);
     this.selectedTour.set(null);
+    this.checkVehicleAvailability();
 
     // Mandate Login FIRST before starting booking!
     if (!this.user().isLoggedIn) {
