@@ -150,3 +150,10 @@ body, html, button, input, select, textarea {
 .pulse-glow {
   animation: pulseGlow 2.5s infinite;
 }
+
+/* Mobile Auto-Zoom Prevention on Focus */
+@media screen and (max-width: 768px) {
+  input, select, textarea, .luxury-input {
+    font-size: 16px !important;
+  }
+}

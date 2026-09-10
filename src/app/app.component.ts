@@ -162,12 +162,19 @@ export class AppComponent {
       titleAr: 'رولز رويس كولينان بلاك بادج الملكية',
       titleEn: 'Rolls-Royce Cullinan Black Badge VIP',
       image: '/cullinan.jpg',
+      images: ['/cullinan.jpg', '/cullinan_interior.jpg', '/luxury_suv.jpg'],
       passengers: 4,
       luggage: 4,
       rateTransfer: 1800,
       rateFullDay12h: 6500,
+      engineAr: 'محرّك 6.75L Twin-Turbocharged V12 بقوة 592 حصان',
+      engineEn: '6.75L Twin-Turbocharged V12 (592 HP)',
+      descriptionAr: 'قمة الفخامة الملكية البريطانية. تتميز بسقف الألماس النجمي المضيء والمقصورة المعزولة صوتياً بالكامل، مع سائق شخصي محترف بزي رسمي معتمد لضيوف القصور والوفود الملكية.',
+      descriptionEn: 'The pinnacle of royal British luxury. Featuring the iconic glowing Starlight Headliner and absolute acoustic isolation.',
       specsAr: ['سقف الألماس النجمي Starlight Headliner', 'مقاعد جلدية مخصصة للقصور والأمراء', 'نظام عزل صوتي مطلق وسائق خبير شخصي'],
-      specsEn: ['Iconic Starlight Headliner ceiling', 'Bespoke royal leather interior suite', 'Absolute acoustic soundproofing & private chauffeur']
+      specsEn: ['Iconic Starlight Headliner ceiling', 'Bespoke royal leather interior suite', 'Absolute acoustic soundproofing & private chauffeur'],
+      featuresAr: ['سقف نجوم Starlight بـ 1344 ألياف ضوئية', 'أبواب كهربائية إغلاق ناعم Soft-Close', 'ثلاجة ضيافة وكؤوس كريستال خاصة', 'واي فاي فضائي فائق السرعة', 'سائق بلباس رسمي بروتوكولي'],
+      featuresEn: ['1,344 optical fiber Starlight ceiling', 'Soft-close power automated doors', 'Hospitality fridge & crystal glasses', 'High-speed satellite Wi-Fi', 'Protocol suited private chauffeur']
     },
     {
       id: 'mercedes-maybach-s680',
@@ -176,12 +183,19 @@ export class AppComponent {
       titleAr: 'مرسيدس مايباخ S-680 الدرجة الأولى',
       titleEn: 'Mercedes-Maybach S-680 First Class',
       image: '/hero.jpg',
+      images: ['/hero.jpg', '/maybach_interior.jpg', '/maybach.jpg'],
       passengers: 3,
       luggage: 3,
       rateTransfer: 950,
       rateFullDay12h: 3800,
+      engineAr: 'محرّك 6.0L V12 Biturbo بشاحنين توربينيين بقوة 621 حصان',
+      engineEn: '6.0L V12 Biturbo (621 HP)',
+      descriptionAr: 'طائرة الدرجة الأولى السائرة على الأرض. مقاعد مساج فردية مجهزة بالتدفئة والتبريد، ثلاجة ضيافة متكاملة مع كؤوس كريستال ونظام صوت سينمائي Burmester 4D.',
+      descriptionEn: 'First Class jet experience on wheels. Executive heated and cooled massage recliners with Burmester 4D Surround Audio.',
       specsAr: ['مقاعد مساج فردية مجهزة بالتدفئة والتبريد', 'ثلاجة ضيافة ونظام صوت Burmester 4D سينمائي', 'واي فاي فائق السرعة وسائق بلباس رسمي VIP'],
-      specsEn: ['Executive heated & cooled massage seats', 'Burmester 4D Audio & hospitality fridge', 'High-speed Wi-Fi & suited executive chauffeur']
+      specsEn: ['Executive heated & cooled massage seats', 'Burmester 4D Audio & hospitality fridge', 'High-speed Wi-Fi & suited executive chauffeur'],
+      featuresAr: ['مقاعد First Class مستلقية بدرجة 43.5', 'نظام صوت Burmester 4D ثلاثي الأبعاد 1750 واط', 'نظام عزل ضوضاء فعال ANC', 'إضاءة محيطية بـ 64 لوناً سيمفونياً', 'ضيافة مياه ومشروبات VIP مبردة'],
+      featuresEn: ['First Class recliners up to 43.5 degrees', 'Burmester 4D 1750W Audio System', 'Active Noise Cancellation technology', '64-color ambient luxury lighting', 'Chilled VIP beverages & hospitality bar']
     },
     {
       id: 'range-rover-autobiography',
@@ -190,12 +204,19 @@ export class AppComponent {
       titleAr: 'رينج روفر أوتوبيوغرافي الفئة الطويلة',
       titleEn: 'Range Rover Autobiography LWB',
       image: '/range_rover.jpg',
+      images: ['/range_rover.jpg', '/range_rover_interior.jpg', '/luxury_suv.jpg'],
       passengers: 4,
       luggage: 4,
       rateTransfer: 1200,
       rateFullDay12h: 4500,
+      engineAr: 'محرّك 4.4L Twin-Turbo V8 بقوة 523 حصان مع نظام تعليق هوائي تكيّفي',
+      engineEn: '4.4L Twin-Turbo V8 (523 HP) with adaptive air suspension',
+      descriptionAr: 'الهيئة الملكية الأكثر مهابة لسفر المدن والمطارات والمواكب الخاصة. مقاعد طيران فاخرة ونظام صوت Meridian Signature 3D استثنائي.',
+      descriptionEn: 'Commanding presence for royal motorcades and intercity travel with Meridian 3D Signature sound.',
       specsAr: ['هيئة ملكية فاخرة ومقاعد طيران درع رئاسي', 'نظام صوت Meridian Signature 3D استثنائي', 'استقبال خاص من مدرج المطار والطيران الخاص'],
-      specsEn: ['Presidential jet-style seating & armor look', 'Meridian Signature 3D Surround sound', 'Private aviation tarmac pickup & concierge']
+      specsEn: ['Presidential jet-style seating & armor look', 'Meridian Signature 3D Surround sound', 'Private aviation tarmac pickup & concierge'],
+      featuresAr: ['سقف بانورامي كريستالي كامل', 'مقاعد مساج الحجر الساخن Hot-Stone', 'نظام تنقية هواء المقصورة بقنية Nanoe X', 'استقبال خاص من مدرج المطار (Tarmac)', 'شاشات عرض خلفية 11.4 بوصة'],
+      featuresEn: ['Full panoramic glass sunroof', 'Hot-stone massage executive seats', 'Nanoe X cabin air purification system', 'Private airport tarmac tarmac pickup', 'Dual 11.4-inch rear HD displays']
     },
     {
       id: 'mercedes-v-class-lounge',
@@ -204,12 +225,19 @@ export class AppComponent {
       titleAr: 'مرسيدس V-Class صالة كبار الشخصيات',
       titleEn: 'Mercedes V-Class VIP Executive Lounge',
       image: '/vclass.jpg',
+      images: ['/vclass.jpg', '/vclass_ext.jpg', '/ambient_interior.jpg'],
       passengers: 6,
       luggage: 7,
       rateTransfer: 850,
       rateFullDay12h: 3200,
+      engineAr: 'محرّك 2.0L Turbo Diesel فائق الهدوء والاقتصادية',
+      engineEn: '2.0L Ultra-quiet Turbocharged Diesel',
+      descriptionAr: 'جناح صالة الاجتماعات المتنقل لكبار الشخصيات والعائلات الملكية. مقاعد جلدية مواجهة، طاولة خشبية مدمجة، شاشة تلفزيون ذكية وإضاءة سقف سيمفونية.',
+      descriptionEn: 'Mobile VIP meeting suite for executive delegations and families with face-to-face seating & smart TV.',
       specsAr: ['مقاعد جلدية مواجهة مع طاولة اجتماعات', 'شاشة تلفزيون ذكية وإضاءة سقف سيمفونية', 'مساحة رحبة للوفود الرسمية والعائلات VIP'],
-      specsEn: ['Face-to-face leather seating & meeting desk', 'Smart TV screen & ambient ceiling lights', 'Spacious suite for VIP delegations & families']
+      specsEn: ['Face-to-face leather seating & meeting desk', 'Smart TV screen & ambient ceiling lights', 'Spacious suite for VIP delegations & families'],
+      featuresAr: ['صالون اجتماعات بمقاعد مواجهة (Conference)', 'طاولة أعمال خشبية قابلة للطي', 'شاشة ذكية Smart TV 32 بوصة', 'منفذ كهرباء 220V لشحن الكمبيوتر', 'ثلاجة مدمجة وضيافة قهوة وشاي'],
+      featuresEn: ['Face-to-face conference seating suite', 'Foldable mahogany executive workdesk', '32-inch Smart TV with Apple TV', '220V power outlets for laptops', 'Mini-fridge with coffee & tea station']
     },
     {
       id: 'cadillac-escalade-xl',
@@ -218,12 +246,19 @@ export class AppComponent {
       titleAr: 'كاديلك إسكاليد XL الرئاسية',
       titleEn: 'Cadillac Escalade XL Executive SUV',
       image: '/luxury_suv.jpg',
+      images: ['/luxury_suv.jpg', '/cullinan.jpg', '/ambient_interior.jpg'],
       passengers: 5,
       luggage: 6,
       rateTransfer: 900,
       rateFullDay12h: 3500,
+      engineAr: 'محرّك 6.2L V8 بقوة 420 حصان ونظام دفع رباعي ذكي AWD',
+      engineEn: '6.2L V8 (420 HP) with Intelligent AWD',
+      descriptionAr: 'الفخامة الأمريكية الرئاسية في أبهى صورها. مساحة رحبة تتسع لـ 5 ركاب و6 حقائب كبيرة مع نظام صوت AKG Studio 3D وشاشات خلفية.',
+      descriptionEn: 'Presidential American luxury with generous space for 5 guests and 6 large luggage cases.',
       specsAr: ['دفع رباعي فاخر وهيئة ملكية مهيبة', 'نظام صوتي استوديوي AKG وشاشات خلفية', 'راحة مطلقة للسفر بين المدن والمطارات'],
-      specsEn: ['Commanding presence & luxury AWD', 'AKG studio sound & rear entertainment displays', 'Supreme comfort for intercity & airport travel']
+      specsEn: ['Commanding presence & luxury AWD', 'AKG studio sound & rear entertainment displays', 'Supreme comfort for intercity & airport travel'],
+      featuresAr: ['نظام صوت AKG Studio 36 مكبر صوت', 'شاشة منحنية OLED قياس 38 بوصة للسائق', 'مقاعد صف ثاني الكابتن منفصلة', 'سعة شنط هائلة للأمتعة الثقيلة', 'تعليق مائي مانع للاهتزازات'],
+      featuresEn: ['36-speaker AKG Studio Reference Audio', '38-inch curved OLED driver display', 'Second-row Captain Recliner chairs', 'Massive luggage cargo capacity', 'Air Ride Adaptive Suspension']
     },
     {
       id: 'lexus-lm-350h',
@@ -232,12 +267,19 @@ export class AppComponent {
       titleAr: 'لكزس LM 350h القصر المتنقل VIP',
       titleEn: 'Lexus LM 350h Ultra-Luxury VIP Van',
       image: '/lexus_lm.jpg',
+      images: ['/lexus_lm.jpg', '/vclass.jpg', '/ambient_interior.jpg'],
       passengers: 4,
       luggage: 5,
       rateTransfer: 1100,
       rateFullDay12h: 4200,
+      engineAr: 'محرّك 2.5L Self-Charging Hybrid فاخر مع دفع رباعي E-Four',
+      engineEn: '2.5L Self-Charging Hybrid with E-Four AWD',
+      descriptionAr: 'القصر الياباني المتنقل المزود بشاشة عرض 48 بوصة وجدار فاصل زجاجي للخصوصية التامة وثلاجة مشروبات ضيافة VIP.',
+      descriptionEn: 'Ultra-luxury mobile palace with a 48-inch partition display, private isolation suite, and mini-bar.',
       specsAr: ['شاشة عرض سينمائية قياس 48 بوصة مع جدار فاصل', 'ثلاجة ومقصورة خاصة كلياً لعزلة مطلقة', 'نظام صوت Mark Levinson 3D الفاخر'],
-      specsEn: ['48-inch widescreen display with privacy partition', 'Private suite isolation & onboard mini-bar', 'Mark Levinson 3D Reference Surround Sound']
+      specsEn: ['48-inch widescreen display with privacy partition', 'Private suite isolation & onboard mini-bar', 'Mark Levinson 3D Reference Surround Sound'],
+      featuresAr: ['شاشة سينمائية 48 بوصة فائقة الاتساع', 'لوح زجاجي فاصل مع خاصية التعتيم الذكي', 'مقاعد Ottoman مساج متطورة بالكامل', 'نظام صوت Mark Levinson 23 سماعة', 'ثلاجة بسعة 14 ليتر مضاءة'],
+      featuresEn: ['48-inch ultra-wide cinema display', 'Smart electrochromic privacy glass wall', 'Advanced fully reclining Ottoman seats', 'Mark Levinson 23-speaker 3D Sound', '14-liter illuminated refreshment bar']
     },
     {
       id: 'bmw-7-series-limo',
@@ -246,12 +288,19 @@ export class AppComponent {
       titleAr: 'بي إم دبليو الفئة السابعة VIP',
       titleEn: 'BMW 7 Series VIP Excellence',
       image: '/chauffeur.jpg',
+      images: ['/chauffeur.jpg', '/hero.jpg', '/maybach.jpg'],
       passengers: 3,
       luggage: 3,
       rateTransfer: 750,
       rateFullDay12h: 3000,
+      engineAr: 'محرّك 4.4L BMW TwinPower Turbo V8 بقوة 536 حصان',
+      engineEn: '4.4L BMW TwinPower Turbo V8 (536 HP)',
+      descriptionAr: 'السيارة التنفيذية الألمانية الأكثر تطوراً. تتميز بشاشة Theatre Screen خلفية عملاقة قياس 31 بوصة بدقة 8K وسقف بانورامي كريستالي.',
+      descriptionEn: 'State-of-the-art German executive sedan with a massive 31-inch 8K BMW Theater Screen.',
       specsAr: ['شاشة سيزار خلفية عملاقة Theater Screen', 'نظام تعليق هوائي فائق النعومة', 'ضيافة قهوة عربية ومياه فاخرة مجانية'],
-      specsEn: ['31-inch BMW Theater Screen in rear', 'Ultra-smooth adaptive air suspension', 'Complimentary Arabic coffee & VIP refreshments']
+      specsEn: ['31-inch BMW Theater Screen in rear', 'Ultra-smooth adaptive air suspension', 'Complimentary Arabic coffee & VIP refreshments'],
+      featuresAr: ['شاشة BMW Theater Screen قياس 31.3 بوصة 8K', 'أبواب أوتوماتيكية تفتح وتغلق باللمس', 'نظام صوت Bowers & Wilkins Diamond 4D', 'إضاءة كريستالية Interaction Bar', 'تحكم بشاشات لمس في الأبواب الخلفية'],
+      featuresEn: ['31.3-inch 8K BMW Theater Screen', 'Automatic touch-activated power doors', 'Bowers & Wilkins Diamond 4D Sound', 'Crystal Interaction Bar lighting', 'Rear door integrated Touch Command screens']
     },
     {
       id: 'porsche-panamera-exec',
@@ -260,12 +309,19 @@ export class AppComponent {
       titleAr: 'بورشه باناميرا إكزيكتيف الرياضية',
       titleEn: 'Porsche Panamera Executive VIP',
       image: '/porsche.jpg',
+      images: ['/porsche.jpg', '/hero.jpg', '/maybach_interior.jpg'],
       passengers: 3,
       luggage: 3,
       rateTransfer: 850,
       rateFullDay12h: 3400,
+      engineAr: 'محرّك 2.9L Twin-Turbo V6 بقوة 325 حصان ونظام قيادة هيدروليكي ذكي',
+      engineEn: '2.9L Twin-Turbo V6 (325 HP) with executive air chassis',
+      descriptionAr: 'الرياضية التنفيذية ذات القعدة الخلفية الممتدة. تجمع بين الأداء الرياضي الألماني وراحة الركوب الاستثنائية لرجال الأعمال.',
+      descriptionEn: 'Executive long-wheelbase sports sedan combining German performance with supreme rear passenger luxury.',
       specsAr: ['طراز التنفيذيين المميز بسقف بانورامي ومساحة خلفية', 'نظام صالون رياضي فخمBurmester High-End', 'قيادة سريعة وسلسة للتنقلات التنفيذية'],
-      specsEn: ['Executive long-wheelbase with panoramic roof', 'Burmester High-End 3D Surround Sound', 'Dynamic VIP executive city & airport transfer']
+      specsEn: ['Executive long-wheelbase with panoramic roof', 'Burmester High-End 3D Surround Sound', 'Dynamic VIP executive city & airport transfer'],
+      featuresAr: ['قاعدة عجلات ممتدة لمساحة أقدام مضاعفة', 'نظام تعليق بوريشه المتكيف PASM', 'مقاعد رياضية جلدية كهربائية 14 اتجاه', 'نظام صوت Burmester High-End 3D', 'تكييف رباعي المناطق مستقل للركاب'],
+      featuresEn: ['Long wheelbase extended rear legroom', 'Porsche Active Suspension (PASM)', '14-way power executive leather seats', 'Burmester High-End 3D Surround', '4-zone automatic climate control']
     }
   ];
 
@@ -280,10 +336,13 @@ export class AppComponent {
       durationEn: 'Full Day (12 Hours)',
       price: 2400,
       image: '/umrah_vip.jpg',
+      images: ['/umrah_vip.jpg', '/hero.jpg', '/ambient_interior.jpg'],
       descriptionAr: 'استقبال من مطار جدة (JED) والتنقل إلى الحرم المكي مع سائق خاص ينتظركم طوال فترة العمرة ومزارات مكة المكرمة.',
       descriptionEn: 'VIP Pickup from Jeddah Airport (JED) to Makkah Haram with dedicated chauffeur for Umrah and holy sites Ziyarat.',
       highlightsAr: ['سائق ذو خبرة بالطرق والمزارات المقررة', 'انتظار ممتد طوال فترة أداء العمرة', 'ضيافة ماء زمزم ومشروبات فاخرة', 'توصيل مباشر لأبواب الفنادق والأبراج'],
-      highlightsEn: ['Experienced local chauffeur for Ziyarat', 'Flexible waiting time during Umrah rituals', 'Complimentary Zamzam water & drinks', 'Direct hotel & tower lobby drop-off']
+      highlightsEn: ['Experienced local chauffeur for Ziyarat', 'Flexible waiting time during Umrah rituals', 'Complimentary Zamzam water & drinks', 'Direct hotel & tower lobby drop-off'],
+      includesAr: ['استقبال وتوديع من مطار جدة JED', 'سائق خاص بلباس رسمي طوال 12 ساعة', 'ضيافة ماء زمزم مبارك بعبوات مبردة', 'توصيل مباشر لأبواب أبراج الحرم'],
+      includesEn: ['Jeddah Airport JED pickup & drop-off', 'Dedicated 12h suited chauffeur', 'Chilled Zamzam holy water hospitality', 'Direct hotel & Haram tower access']
     },
     {
       id: 'alula-heritage-tour',
@@ -294,10 +353,13 @@ export class AppComponent {
       durationEn: '12 Hours Full Tour',
       price: 3600,
       image: '/alula_maraya.jpg',
+      images: ['/alula_maraya.jpg', '/luxury_suv.jpg', '/ambient_interior.jpg'],
       descriptionAr: 'رحلة فاخرة لاستكشاف معالم العلا والجرُ ومرتفعات الحجر وجبل الفيل وقاعة مرايا مع سائق خاص خبير بالمنطقة.',
       descriptionEn: 'Luxury tour discovering Hegra, Elephant Rock, and Maraya Concert Hall with a private expert chauffeur.',
       highlightsAr: ['سيارة كاديلك إسكاليد XL أو مايباخ', 'جدول زيارات مرن حسب رغبتكم', 'مرشد سياحي خاص عند الطلب', 'خدمة واي فاي وضيافة ملكية onboard'],
-      highlightsEn: ['Cadillac Escalade XL or Maybach', 'Customizable itinerary to your pace', 'Private VIP tour guide on demand', 'High-speed Wi-Fi & onboard hospitality']
+      highlightsEn: ['Cadillac Escalade XL or Maybach', 'Customizable itinerary to your pace', 'Private VIP tour guide on demand', 'High-speed Wi-Fi & onboard hospitality'],
+      includesAr: ['سيارة دفع رباعي رئاسية Cadillac / Maybach', 'سائق خبير بمعالم ومسارات العلا', 'تصاريح دخول قاعة مرايا والجَر', 'واي فاي وضيافة فاخرة طوال الرحلة'],
+      includesEn: ['Luxury SUV Cadillac / Maybach', 'Local AlUla expert chauffeur', 'Maraya Hall & Hegra entry passes', 'High-speed Wi-Fi & onboard drinks']
     },
     {
       id: 'abha-asir-tour',
@@ -308,10 +370,13 @@ export class AppComponent {
       durationEn: '10 Hours Tour',
       price: 2800,
       image: '/abha_asir.jpg',
+      images: ['/abha_asir.jpg', '/range_rover.jpg', '/ambient_interior.jpg'],
       descriptionAr: 'جولة استثنائية بين الجبل الأخضر ورجال ألمع ومرتفعات السودة بأسطول الدفع الرباعي الفاخر.',
       descriptionEn: 'Breathtaking tour across Green Mountain, Rijal Almaa, and Al Souda peaks in premium 4x4 vehicles.',
       highlightsAr: ['إطلالات بانورامية على قمم الجبال', 'زيارة قرية رجال ألمع التراثية', 'سائقين محترفين بطرق الجبال', 'تكييف وثلاجة ضيافة متكاملة'],
-      highlightsEn: ['Panoramic mountain peak vistas', 'Historical Rijal Almaa heritage trip', 'Chauffeurs skilled in mountain roads', 'Full climate control & refreshments']
+      highlightsEn: ['Panoramic mountain peak vistas', 'Historical Rijal Almaa heritage trip', 'Chauffeurs skilled in mountain roads', 'Full climate control & refreshments'],
+      includesAr: ['جولة مرتفعات السودة ورجال ألمع', 'سيارة دفع رباعي فارهة Range Rover / Escalade', 'سائق محترف بمسارات الجبال', 'ضيافة فواكه موسمية ومشروبات VIP'],
+      includesEn: ['Al Souda & Rijal Almaa tour', 'Luxury 4x4 Range Rover / Escalade', 'Mountain road specialist chauffeur', 'Seasonal fruits & drinks hospitality']
     },
     {
       id: 'red-sea-vip-resort',
@@ -322,10 +387,13 @@ export class AppComponent {
       durationEn: 'Custom Transfer',
       price: 3200,
       image: '/red_sea_resort.jpg',
+      images: ['/red_sea_resort.jpg', '/maybach.jpg', '/vclass.jpg'],
       descriptionAr: 'تنقل راقي وسلس من مطار البحر الأحمر الدولي (RSI) إلى أرقى الفنادق والمنتجعات العالمية.',
       descriptionEn: 'Seamless VIP chauffeur transfer from Red Sea International Airport (RSI) to luxury island resorts.',
       highlightsAr: ['استقبال VIP عند بوابات الوصول', 'مساحة واسعة لكافة الأمتعة والشنط', 'راحة وسرية تامة للشخصيات VIP', 'مرسيدس مايباخ أو صالة V-Class'],
-      highlightsEn: ['Tarmac/Arrival gate VIP welcome', 'Ample luggage space for long stays', 'Maximum privacy for VIP guests', 'Mercedes-Maybach or V-Class Lounge']
+      highlightsEn: ['Tarmac/Arrival gate VIP welcome', 'Ample luggage space for long stays', 'Maximum privacy for VIP guests', 'Mercedes-Maybach or V-Class Lounge'],
+      includesAr: ['توصيل من وإلى مطار البحر الأحمر RSI', 'خيارات مايباخ S680 أو صالة V-Class', 'خدمة حمال الأمتعة والاستقبال الخاصة', 'إنترنت سريع وضيافة باردة'],
+      includesEn: ['RSI Airport roundtrip transfer', 'Maybach S680 or V-Class Lounge options', 'VIP luggage porter & greeting service', 'Fast Wi-Fi & cold refreshments']
     }
   ];
 
@@ -362,6 +430,33 @@ export class AppComponent {
   bookingStep = signal<number>(1);
   selectedCar = signal<FleetItem | null>(null);
   selectedTour = signal<TourPackage | null>(null);
+
+  // Detail Modals state
+  selectedVehicleDetail = signal<FleetItem | null>(null);
+  selectedTourDetail = signal<TourPackage | null>(null);
+  activeDetailImageIndex = signal<number>(0);
+
+  openVehicleDetail(car: FleetItem): void {
+    this.selectedVehicleDetail.set(car);
+    this.activeDetailImageIndex.set(0);
+  }
+
+  closeVehicleDetail(): void {
+    this.selectedVehicleDetail.set(null);
+  }
+
+  openTourDetail(tour: TourPackage): void {
+    this.selectedTourDetail.set(tour);
+    this.activeDetailImageIndex.set(0);
+  }
+
+  closeTourDetail(): void {
+    this.selectedTourDetail.set(null);
+  }
+
+  setDetailImageIndex(idx: number): void {
+    this.activeDetailImageIndex.set(idx);
+  }
 
   // Pending selection if user triggers booking before login
   pendingCar = signal<FleetItem | null>(null);
@@ -583,6 +678,92 @@ export class AppComponent {
       this.contactSubmitted.set(false);
       this.contactForm = { name: '', phone: '', email: '', message: '' };
     }, 4000);
+  }
+
+  // Location Pointer GPS Action
+  useCurrentLocation(type: 'pickup' | 'dropoff'): void {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const locStr = `الموقع الحالي (GPS: ${pos.coords.latitude.toFixed(4)}, ${pos.coords.longitude.toFixed(4)})`;
+          if (type === 'pickup') {
+            this.searchQuery.pickupCity = locStr;
+          } else {
+            this.searchQuery.dropoffCity = locStr;
+          }
+          this.recalculateRoute();
+        },
+        () => {
+          const locStr = type === 'pickup' ? 'موقعي الحالي - جدة (GPS)' : 'موقعي الحالي - مكة المكرمة (GPS)';
+          if (type === 'pickup') {
+            this.searchQuery.pickupCity = locStr;
+          } else {
+            this.searchQuery.dropoffCity = locStr;
+          }
+          this.recalculateRoute();
+        }
+      );
+    } else {
+      const locStr = type === 'pickup' ? 'موقعي الحالي - جدة (GPS)' : 'موقعي الحالي - مكة المكرمة (GPS)';
+      if (type === 'pickup') {
+        this.searchQuery.pickupCity = locStr;
+      } else {
+        this.searchQuery.dropoffCity = locStr;
+      }
+      this.recalculateRoute();
+    }
+  }
+
+  // Booking Record Detail & Management State
+  selectedBookingRecord = signal<BookingRecord | null>(null);
+  isEditBookingMode = signal<boolean>(false);
+  editBookingDate = '';
+  editBookingTime = '';
+  editChauffeurNotes = '';
+
+  openBookingDetail(record: BookingRecord): void {
+    this.selectedBookingRecord.set(record);
+    this.isEditBookingMode.set(false);
+    this.editBookingDate = record.date;
+    this.editBookingTime = record.time;
+    this.editChauffeurNotes = 'توفير سائق خبير ومشروبات مبردة';
+  }
+
+  closeBookingDetail(): void {
+    this.selectedBookingRecord.set(null);
+    this.isEditBookingMode.set(false);
+  }
+
+  enableEditBooking(): void {
+    this.isEditBookingMode.set(true);
+  }
+
+  saveBookingChanges(): void {
+    if (!this.selectedBookingRecord()) return;
+    const current = this.selectedBookingRecord()!;
+    const updated: BookingRecord = {
+      ...current,
+      date: this.editBookingDate,
+      time: this.editBookingTime
+    };
+
+    this.user.update(u => ({
+      ...u,
+      bookings: u.bookings.map(b => b.id === current.id ? updated : b)
+    }));
+
+    this.selectedBookingRecord.set(updated);
+    this.isEditBookingMode.set(false);
+  }
+
+  cancelUserBooking(bookingId: string): void {
+    this.user.update(u => ({
+      ...u,
+      bookings: u.bookings.map(b => b.id === bookingId ? { ...b, status: 'cancelled' } : b)
+    }));
+    if (this.selectedBookingRecord() && this.selectedBookingRecord()!.id === bookingId) {
+      this.selectedBookingRecord.update(b => b ? { ...b, status: 'cancelled' } : null);
+    }
   }
 
   logout(): void {

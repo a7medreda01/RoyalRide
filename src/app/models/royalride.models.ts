@@ -5,12 +5,19 @@ export interface FleetItem {
   titleAr: string;
   titleEn: string;
   image: string;
+  images?: string[];
   passengers: number;
   luggage: number;
   rateTransfer: number;
   rateFullDay12h: number;
   specsAr: string[];
   specsEn: string[];
+  engineAr?: string;
+  engineEn?: string;
+  featuresAr?: string[];
+  featuresEn?: string[];
+  descriptionAr?: string;
+  descriptionEn?: string;
 }
 
 export interface TourPackage {
@@ -22,10 +29,13 @@ export interface TourPackage {
   durationEn: string;
   price: number;
   image: string;
+  images?: string[];
   descriptionAr: string;
   descriptionEn: string;
   highlightsAr: string[];
   highlightsEn: string[];
+  includesAr?: string[];
+  includesEn?: string[];
 }
 
 export interface LocationPoint {
@@ -64,7 +74,7 @@ export interface BookingRecord {
   time: string;
   pickup: string;
   dropoff: string;
-  status: 'confirmed' | 'pending' | 'completed';
+  status: 'confirmed' | 'pending' | 'completed' | 'cancelled';
   amount: number;
   taxAmount: number;
   customerName: string;
