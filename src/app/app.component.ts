@@ -503,8 +503,14 @@ export class AppComponent {
 
   getFilteredFleet(): FleetItem[] {
     const filter = this.fleetCategoryFilter();
-    if (filter === 'all') return this.fleetList;
-    return this.fleetList.filter(item => item.category === filter);
+    let list = this.fleetList;
+    if (filter !== 'all') {
+      list = list.filter(item => item.category === filter);
+    }
+    if (this.isSearchResultsActive() && this.searchQuery.passengers > 0) {
+      list = list.filter(item => item.passengers >= this.searchQuery.passengers);
+    }
+    return list;
   }
 
   openAuthModal(): void {
@@ -613,14 +619,16 @@ export class AppComponent {
     this.isBookingModalOpen.set(true);
   }
 
+  isSearchResultsActive = signal(false);
+
   executeSearch(): void {
-    if (!this.user().isLoggedIn) {
-      this.pendingCar.set(this.fleetList[0]);
-      this.openAuthModal();
-      return;
-    }
+    this.isSearchResultsActive.set(true);
+    this.checkVehicleAvailability();
     this.setActiveTab('fleet');
-    this.startBooking(this.fleetList[0]);
+  }
+
+  clearSearchFilter(): void {
+    this.isSearchResultsActive.set(false);
   }
 
   closeBookingModal(): void {

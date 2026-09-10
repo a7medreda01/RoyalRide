@@ -646,6 +646,32 @@
         </div>
       </div>
 
+      <!-- 🔎 ACTIVE SEARCH RESULTS BANNER 🔎 -->
+      @if (isSearchResultsActive()) {
+        <div class="p-4 rounded-2xl bg-[#0F121C] border border-[#C4A77D]/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-xl animate-fadeIn">
+          <div class="space-y-1">
+            <span class="text-[10px] text-[#C4A77D] font-bold uppercase tracking-wider block flex items-center gap-1">
+              <i class="bi bi-funnel-fill"></i>
+              <span>{{ langService.isRtl() ? 'نتائج البحث عن السيارات المتاحة' : 'Available Cars Search Results' }}</span>
+            </span>
+            <p class="text-xs text-white font-semibold flex items-center gap-2 flex-wrap">
+              <span>📅 {{ searchQuery.date }}</span>
+              <span>⏰ {{ searchQuery.time }}</span>
+              <span>👥 {{ searchQuery.passengers }} {{ langService.isRtl() ? 'ركاب VIP' : 'Guests' }}</span>
+              <span class="text-[#C4A77D]">📍 {{ searchQuery.pickupCity.split(' - ')[0] }} ↔ {{ searchQuery.dropoffCity.split(' - ')[0] }}</span>
+            </p>
+            <p class="text-[11px] text-emerald-400 font-bold pt-0.5">
+              {{ availabilityStatus().messageAr }}
+            </p>
+          </div>
+
+          <button (click)="clearSearchFilter()" class="btn-outline-gold text-xs py-1.5 px-3.5 font-bold shrink-0 flex items-center gap-1">
+            <i class="bi bi-x-circle"></i>
+            <span>{{ langService.isRtl() ? 'إلغاء التصفية (عرض الأسطول كاملاً)' : 'Clear Filter (Show All Fleet)' }}</span>
+          </button>
+        </div>
+      }
+
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @for (car of getFilteredFleet(); track car.id) {
           <div class="luxury-card overflow-hidden flex flex-col justify-between group border-[#262A36]">
