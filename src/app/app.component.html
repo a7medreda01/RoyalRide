@@ -6,7 +6,7 @@
       
       <!-- Brand Logo (Gold Royal Crest Logo) -->
       <div (click)="setActiveTab('home')" class="flex items-center gap-2.5 sm:gap-3.5 cursor-pointer group shrink-0">
-        <img src="/logo.png" alt="ROYALRIDE Logo" class="h-9 sm:h-11 w-auto object-contain drop-shadow-[0_2px_10px_rgba(196,167,125,0.3)] group-hover:scale-105 transition-transform shrink-0" />
+        <img src="/logo.png" alt="ROYALRIDE Logo" class="h-9 sm:h-11 w-auto object-cover rounded-xl border border-[#C4A77D]/40 shadow-md group-hover:scale-105 transition-all shrink-0" />
         <div>
           <span class="text-xs sm:text-base font-extrabold tracking-widest text-white block leading-tight">ROYALRIDE</span>
           <span class="text-[8px] sm:text-[10px] tracking-wider text-[#C4A77D] font-bold block uppercase">
@@ -66,7 +66,7 @@
           <span>{{ langService.currentLang() === 'ar' ? 'English' : 'العربية' }}</span>
         </button>
 
-        <button (click)="startBooking()" class="btn-gold py-1 px-2.5 sm:py-2 sm:px-4 text-[10px] sm:text-xs font-bold shadow-lg flex items-center gap-1 shrink-0">
+        <button (click)="setActiveTab('fleet')" class="btn-gold py-1 px-2.5 sm:py-2 sm:px-4 text-[10px] sm:text-xs font-bold shadow-lg flex items-center gap-1 shrink-0">
           <i class="bi bi-crown-fill text-[10px] sm:text-xs"></i>
           <span>{{ langService.isRtl() ? 'احجز VIP' : 'Reserve VIP' }}</span>
         </button>
@@ -284,7 +284,7 @@
 
               <!-- Gold Pill CTA Button -->
               <div class="pt-1">
-                <button (click)="startBooking(fleetList[0])" class="inline-flex items-center justify-between gap-4 py-3 px-6 sm:py-3.5 sm:px-8 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#C4A77D] to-[#B38F56] text-black font-bold text-xs sm:text-sm shadow-2xl hover:brightness-110 active:scale-95 transition-all group">
+                <button (click)="setActiveTab('fleet')" class="inline-flex items-center justify-between gap-4 py-3 px-6 sm:py-3.5 sm:px-8 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#C4A77D] to-[#B38F56] text-black font-bold text-xs sm:text-sm shadow-2xl hover:brightness-110 active:scale-95 transition-all group">
                   <span class="font-extrabold tracking-wide">{{ langService.isRtl() ? 'احجز ليموزين VIP الآن' : 'Book Executive Chauffeur' }}</span>
                   <div class="w-7 h-7 rounded-full bg-[#161410] text-[#C4A77D] flex items-center justify-center font-bold text-xs shadow-md group-hover:scale-105 transition-transform shrink-0">
                     <i class="bi bi-arrow-left text-xs" [class.rotate-180]="!langService.isRtl()"></i>
